@@ -1,0 +1,68 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  box-sizing: border-box;
+  --grey200: #eeee;
+  --grey600: #666666;
+  --stone550: #808080;
+  --stone650: #888;
+  --stone750: #373737;
+  --stone850: #262626;
+  --stone950: #232323;
+  --white: #ffffff;
+  --black: #000;
+  --b800: #171615;
+  --green750: #0a9600;
+  --orange50: #ffdc97;
+  --orange100: #ffbd3e;
+  --orange150: #ffbe41;
+  --orange200: #fcbf49;
+  --orange250: #ffa800;
+  --orange400: #ff9000;
+  --orange500: #ff7d34;
+  --orange600: #fc6a00;
+}
+
+@layer utilities {
+  ol > li {
+    counter-increment: counter;
+  }
+  ol > li::marker {
+    color: var(--stone650);
+    content: "[Шаг - " counter(counter) "] ";
+  }
+}
+
+.button {
+  background: linear-gradient(90deg, var(--green750), #114d16, var(--green750));
+  background-size: 200% 200%;
+  border: none;
+  color: white;
+  padding: 15px 30px;
+  text-align: center;
+  font-size: 16px;
+  font-weight: bold;
+  text-decoration: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: background-position 0.5s;
+  animation: gradientShift 6s ease infinite;
+}
+
+.button:hover {
+  background-position: right center;
+}
+
+@keyframes gradientShift {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
