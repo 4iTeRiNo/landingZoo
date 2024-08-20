@@ -41,6 +41,9 @@ const config: Config = {
         green: {
           750: "var(--green750)",
         },
+        indigo: {
+          950: "var(--indigo950)",
+        },
         orange: {
           50: "var(--orange50)",
           100: "var(--orange100)",

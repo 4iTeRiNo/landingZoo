@@ -1,3 +1,5 @@
+"use client";
+
 import AccentButton from "@/components/ButtonAccent";
 import Title from "@/components/TitleAccent";
 import Video from "@/components/Video";
@@ -9,15 +11,20 @@ import {
   navigateLinks,
 } from "@/shared/constant";
 import Image from "next/image";
+import { MouseEventHandler, useEffect, useState } from "react";
 
 const happyCat = "happy-cat.svg";
 
 // eslint-disable-next-line lines-around-directive
 export default function Home() {
+  const [toggleTheme, setToggleTheme] = useState<boolean>(true);
+
   return (
-    <main className="bg-stone-950 pl-4  pb-7  pr-4 flex flex-col gap-y-10">
-      <section className="flex w-full g pt-6 pb-8 items-center  flex-col h-[667px] align-middle  justify-center object-cover, pos=relative ">
-        <div className="flex-none flex flex-row justify-between w-80 z-10 pb-9">
+    <main
+      className={`${toggleTheme ? "bg-stone-950" : "bg-indigo-950"} pl-4  pb-7  pr-4 flex flex-col gap-y-10`}
+    >
+      <section className="flex w-full g pt-6 pb-8 items-center justify-center  flex-col h-[667px] align-middle   object-cover, pos=relative ">
+        <div className="flex-none flex flex-row gap-x-5 justify-between w-80 z-10 pb-9">
           <Image
             className=""
             src="logo.svg"
@@ -25,7 +32,18 @@ export default function Home() {
             width={200}
             height={200}
           />
-          <div>
+          <div className="flex-none flex flex-row items-center justify-around w-3/6 z-10 ">
+            <div className="toggle_wrapper">
+              <label htmlFor="toggle-button">
+                <input
+                  onClick={() => setToggleTheme(!toggleTheme)}
+                  type="checkbox"
+                  id="toggle-button"
+                  className="toggle_button"
+                />
+                {"  "}
+              </label>
+            </div>
             <Image src="hamburger.svg" alt="hamburger" width={35} height={35} />
           </div>
         </div>

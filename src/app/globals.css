@@ -13,6 +13,7 @@ body {
   --stone950: #232323;
   --white: #ffffff;
   --black: #000;
+  --indigo950: #0f0a1f;
   --b800: #171615;
   --green750: #0a9600;
   --orange50: #ffdc97;
@@ -46,4 +47,48 @@ body {
     transform: rotate(90deg);
     transition: 0.45s transform ease;
   }
+}
+
+.toggle_button {
+  position: relative;
+  display: inline-block;
+  width: auto;
+  width: 30px;
+  height: 15px;
+  margin: 0;
+  vertical-align: top;
+  background: transparent;
+  border: 1px solid white;
+  border-radius: 50px;
+  outline: none;
+  cursor: pointer;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+}
+
+.toggle_button::after {
+  content: "";
+
+  display: inline-block;
+  position: absolute;
+  left: 3px;
+  top: 20%;
+
+  width: 7px;
+  height: 7px;
+  background-color: white;
+  border-radius: 50%;
+
+  transform: translateX(0);
+  transition: 0.3s;
+}
+
+.toggle_button:checked::after {
+  transform: translateX(calc(100% + 9px));
+  background-color: #fff;
+}
+.toggle_button:checked {
+  background-color: transparent;
+  transition: all 0.3s cubic-bezier(0.2, 0.85, 0.32, 1.2);
 }
