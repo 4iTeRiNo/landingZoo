@@ -11,11 +11,10 @@ import {
   navigateLinks,
 } from "@/shared/constant";
 import Image from "next/image";
-import { MouseEventHandler, useEffect, useState } from "react";
+import { useState } from "react";
 
 const happyCat = "happy-cat.svg";
 
-// eslint-disable-next-line lines-around-directive
 export default function Home() {
   const [toggleTheme, setToggleTheme] = useState<boolean>(true);
 
@@ -23,8 +22,8 @@ export default function Home() {
     <main
       className={`${toggleTheme ? "bg-stone-950" : "bg-indigo-950"} pl-4  pb-7  pr-4 flex flex-col gap-y-10`}
     >
-      <section className="flex w-full g pt-6 pb-8 items-center justify-center  flex-col h-[667px] align-middle   object-cover, pos=relative ">
-        <div className="flex-none flex flex-row gap-x-5 justify-between w-80 z-10 pb-9">
+      <section className="flex w-full g pt-6 pb-8 items-center justify-center  flex-col h-[667px] align-middle object-cover">
+        <div className="flex-none flex flex-row gap-x-5 justify-between w-full z-10 pb-9">
           <Image
             className=""
             src="logo.svg"
@@ -32,16 +31,19 @@ export default function Home() {
             width={200}
             height={200}
           />
-          <div className="flex-none flex flex-row items-center justify-around w-3/6 z-10 ">
-            <div className="toggle_wrapper">
-              <label htmlFor="toggle-button">
+          <div className="flex-none flex flex-row items-center justify-between w-3/6 z-10 ">
+            <div className="toggle_wrapper text-white">
+              <label
+                htmlFor="toggle-button"
+                className="flex flex-row gap-x-2 items-center"
+              >
+                {toggleTheme ? "Бизнес" : "Клиент"}
                 <input
                   onClick={() => setToggleTheme(!toggleTheme)}
                   type="checkbox"
                   id="toggle-button"
                   className="toggle_button"
                 />
-                {"  "}
               </label>
             </div>
             <Image src="hamburger.svg" alt="hamburger" width={35} height={35} />
@@ -49,7 +51,7 @@ export default function Home() {
         </div>
         <div className="flex-1 flex   flex-col text-white z-10 font-normal top-28 w-80 gap-y-7 ">
           <li className="text-[13px] marker:text-orange-700">
-            Добро пожаловать мы - Find Friend
+            Добро пожаловать мы - ZooRama
           </li>
           <h1 className="font-bold text-4xl text  leading-8">
             Ваш надежный партнер по уходу за питомцами
@@ -63,20 +65,20 @@ export default function Home() {
           {" "}
         </div>
         <Video className="absolute top-0 bottom-0 h-[667px] z-0 object-cover aspect-square" />
-        <div className="flex items-center flex-col z-10 flex-initial gap-y-4">
-          <AccentButton text=" Создать личный кабинет" />
+        <div className="flex w-full items-center flex-col z-10 flex-initial gap-y-4">
+          <AccentButton text="Создать личный кабинет" />
           <p className="text-[12px] text-center text-white">Войти</p>
         </div>
       </section>
       <section className="flex flex-col gap-y-4  text-white ">
-        <Title text="Добро пожаловать мы - Find Friend" />
+        <Title text="Почему стоит выбрать наше приложение?" />
         <p className="text-[18px] text-balance leading-normal pb-2">
           Наше приложение упрощает уход за питомцами: безопасная регистрация,
           удобные профили, персональные графики и доступность везде и всегда.
         </p>
-        <div>
+        <div className="flex flex-col justify-center items-center w-full">
           <Image
-            className="m-auto aspect-square"
+            className="aspect-square"
             width={228}
             height={228}
             src={happyCat}
@@ -87,7 +89,7 @@ export default function Home() {
       </section>
       <section className="flex flex-col gap-y-4 pt-3 px-[10px] bg-stone-850  text-white">
         <Title text="Как это работает" />
-        <section className=" pb-5 ">
+        <section className=" rounded-md pb-5 ">
           <h4 className="text-[18px]">Вам нужно</h4>
           <ol className="pl-[64px] list leading-loose">
             <li className="">- Перейти в приложение</li>
