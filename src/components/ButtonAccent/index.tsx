@@ -1,6 +1,6 @@
 import "@/app/globals.css";
 
-export const Button = ({ text }: { text: string }) => {
+const AccentButton = ({ text }: { text: string }) => {
   return (
     <button
       type="submit"
@@ -10,4 +10,4 @@ export const Button = ({ text }: { text: string }) => {
     </button>
   );
 };
-export default Button;
+export default AccentButton;

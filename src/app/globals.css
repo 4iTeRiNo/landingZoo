@@ -33,36 +33,17 @@ body {
     color: var(--stone650);
     content: "[Шаг - " counter(counter) "] ";
   }
-}
 
-.button {
-  background: linear-gradient(90deg, var(--green750), #114d16, var(--green750));
-  background-size: 200% 200%;
-  border: none;
-  color: white;
-  padding: 15px 30px;
-  text-align: center;
-  font-size: 16px;
-  font-weight: bold;
-  text-decoration: none;
-  border-radius: 10px;
-  cursor: pointer;
-  transition: background-position 0.5s;
-  animation: gradientShift 6s ease infinite;
-}
-
-.button:hover {
-  background-position: right center;
-}
-
-@keyframes gradientShift {
-  0% {
-    background-position: 0% 50%;
+  summary {
+    display: inline-flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    transition: 1s transform ease;
   }
-  50% {
-    background-position: 100% 50%;
-  }
-  100% {
-    background-position: 0% 50%;
+
+  details[open] > summary:before {
+    transform: rotate(90deg);
+    transition: 0.45s transform ease;
   }
 }
