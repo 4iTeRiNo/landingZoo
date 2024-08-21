@@ -11,9 +11,8 @@ body {
   --stone750: #373737;
   --stone850: #262626;
   --stone950: #232323;
-  --white: #ffffff;
   --black: #000;
-  --indigo950: #0f0a1f;
+  --indigo950: #0f0a21;
   --b800: #171615;
   --green750: #0a9600;
   --orange50: #ffdc97;
@@ -36,6 +35,8 @@ body {
   }
 
   summary {
+    content: "";
+    -webkit-appearance: none;
     display: inline-flex;
     justify-content: space-between;
     align-items: center;

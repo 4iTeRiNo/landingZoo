@@ -1,8 +1,7 @@
-"use client";
-
 import AccentButton from "@/components/ButtonAccent";
+import Header from "@/components/Header";
 import Title from "@/components/TitleAccent";
-import Video from "@/components/Video";
+import Video from "@/components/Video/Video";
 import {
   mockComments,
   mockContacts,
@@ -11,45 +10,15 @@ import {
   navigateLinks,
 } from "@/shared/constant";
 import Image from "next/image";
-import { useState } from "react";
 
 const happyCat = "happy-cat.svg";
 
 export default function Home() {
-  const [toggleTheme, setToggleTheme] = useState<boolean>(true);
-
   return (
-    <main
-      className={`${toggleTheme ? "bg-stone-950" : "bg-indigo-950"} pl-4  pb-7  pr-4 flex flex-col gap-y-10`}
-    >
-      <section className="flex w-full g pt-6 pb-8 items-center justify-center  flex-col h-[667px] align-middle object-cover">
-        <div className="flex-none flex flex-row gap-x-5 justify-between w-full z-10 pb-9">
-          <Image
-            className=""
-            src="logo.svg"
-            alt="logo"
-            width={200}
-            height={200}
-          />
-          <div className="flex-none flex flex-row items-center justify-between w-3/6 z-10 ">
-            <div className="toggle_wrapper text-white">
-              <label
-                htmlFor="toggle-button"
-                className="flex flex-row gap-x-2 items-center"
-              >
-                {toggleTheme ? "Бизнес" : "Клиент"}
-                <input
-                  onClick={() => setToggleTheme(!toggleTheme)}
-                  type="checkbox"
-                  id="toggle-button"
-                  className="toggle_button"
-                />
-              </label>
-            </div>
-            <Image src="hamburger.svg" alt="hamburger" width={35} height={35} />
-          </div>
-        </div>
-        <div className="flex-1 flex   flex-col text-white z-10 font-normal top-28 w-80 gap-y-7 ">
+    <main className="bg-indigo-950 pl-4  pb-7  pr-4 flex flex-col gap-y-10">
+      <section className="flex w-full g pt-[30px] pb-8 items-center justify-center  flex-col h-[667px] align-middle object-cover">
+        <Header />
+        <div className="flex-1  flex flex-col text-white z-[5] font-normal top-28 w-full gap-y-7 ">
           <li className="text-[13px] marker:text-orange-700">
             Добро пожаловать мы - ZooRama
           </li>
@@ -65,7 +34,7 @@ export default function Home() {
           {" "}
         </div>
         <Video className="absolute top-0 bottom-0 h-[667px] z-0 object-cover aspect-square" />
-        <div className="flex w-full items-center flex-col z-10 flex-initial gap-y-4">
+        <div className="flex w-full items-center flex-col z-5 flex-initial gap-y-4">
           <AccentButton text="Создать личный кабинет" />
           <p className="text-[12px] text-center text-white">Войти</p>
         </div>
@@ -87,9 +56,9 @@ export default function Home() {
           <AccentButton text="В приложение" />
         </div>
       </section>
-      <section className="flex flex-col gap-y-4 pt-3 px-[10px] bg-stone-850  text-white">
-        <Title text="Как это работает" />
-        <section className=" rounded-md pb-5 ">
+      <section className="flex flex-col gap-y-4 pt-3 bg-stone-850 text-white  ">
+        <Title className="px-[10px]" text="Как это работает" />
+        <section className="rounded-md pb-5 px-[10px]">
           <h4 className="text-[18px]">Вам нужно</h4>
           <ol className="pl-[64px] list leading-loose">
             <li className="">- Перейти в приложение</li>
@@ -112,7 +81,7 @@ export default function Home() {
           </div>
         ))}
       </section>
-      <section className="gap-y-4 flex flex-col text-white bg-stone-850 pt-3 px-[10px]">
+      <section className="gap-y-4 flex flex-col text-white bg-stone-850 py-3 rounded-md px-[10px]">
         <Title text="FAQ" />
         {mockFaqs.map((faq) => (
           <details key={faq.id}>
@@ -160,8 +129,8 @@ export default function Home() {
           ))}
         </ul>
       </section>
-      <section className="flex flex-row justify-between px-[10px] pt-5  border-t-[1px] border-stone-750">
-        <div className="flex flex-col gap-y-3">
+      <section className="flex flex-row justify-between px-[10px] pt-5   border-t-[1px] border-stone-750">
+        <div className="flex flex-col gap-y-3 ">
           <h4 className="text-[11px] text-stone-750">
             Политика конфиденциальности
           </h4>

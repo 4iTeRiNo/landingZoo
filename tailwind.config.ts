@@ -22,8 +22,32 @@ const config: Config = {
         orange300:
           "linear-gradient(90deg, var(--orange50) 0%, var(--orange100) 100%)",
       },
-      animation: {},
-      keyframes: {},
+      keyframes: {
+        moveToLeft: {
+          "0%": {
+            transform: "translateX(100%)",
+            opacity: "0",
+          },
+          "100%": {
+            transform: "translateX(0)",
+            opacity: "1",
+          },
+        },
+        moveToLeftLinks: {
+          "0%": {
+            transform: "translateX(90%)",
+            opacity: "0",
+          },
+          "100%": {
+            transform: "translateX(0)",
+            opacity: "1",
+          },
+        },
+      },
+      animation: {
+        moveToLeft: "moveToLeft 0.3s ease-in-out_forwards",
+        moveToLeftLinks: "moveToLeftLinks 0.5s ease-in-out forwards",
+      },
       colors: {
         grey: {
           200: "var(--grey200)",
@@ -36,7 +60,6 @@ const config: Config = {
           850: "var(--stone850)",
           950: "var(--stone950)",
         },
-        white: "var(--white)",
         black: "var(--black)",
         green: {
           750: "var(--green750)",

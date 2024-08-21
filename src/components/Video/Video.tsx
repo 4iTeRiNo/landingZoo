@@ -1,3 +1,5 @@
+"use client";
+
 import useMounted from "@/shared/hooks/useMounted";
 
 export default function Video({

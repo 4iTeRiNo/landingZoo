@@ -3,7 +3,7 @@ import { nunito, openSans, roboto } from "./fonts";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "Friend Friend",
+  title: "ZooRama",
   description: " Найди друга и стань счастливым",
 };
 
