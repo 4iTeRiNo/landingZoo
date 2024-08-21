@@ -26,17 +26,16 @@ body {
 }
 
 @layer utilities {
-  ol > li {
-    counter-increment: counter;
+  details > summary::marker {
+    display: none !important;
   }
-  ol > li::marker {
-    color: var(--stone650);
-    content: "[Шаг - " counter(counter) "] ";
+
+  summary::-webkit-details-marker {
+    /* Hides marker on Safari */
+    display: none;
   }
 
   summary {
-    content: "";
-    -webkit-appearance: none;
     display: inline-flex;
     justify-content: space-between;
     align-items: center;

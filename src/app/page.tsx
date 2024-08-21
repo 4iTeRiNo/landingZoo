@@ -3,6 +3,7 @@ import Header from "@/components/Header";
 import Title from "@/components/TitleAccent";
 import Video from "@/components/Video/Video";
 import {
+  detailsSteps,
   mockComments,
   mockContacts,
   mockFaqs,
@@ -18,7 +19,7 @@ export default function Home() {
     <main className="bg-indigo-950 pl-4  pb-7  pr-4 flex flex-col gap-y-10">
       <section className="flex w-full g pt-[30px] pb-8 items-center justify-center  flex-col h-[667px] align-middle object-cover">
         <Header />
-        <div className="flex-1  flex flex-col text-white z-[5] font-normal top-28 w-full gap-y-7 ">
+        <div className="flex-1 flex flex-col text-white z-[5] font-normal top-28 w-full gap-y-7 ">
           <li className="text-[13px] marker:text-orange-700">
             Добро пожаловать мы - ZooRama
           </li>
@@ -36,7 +37,7 @@ export default function Home() {
         <Video className="absolute top-0 bottom-0 h-[667px] z-0 object-cover aspect-square" />
         <div className="flex w-full items-center flex-col z-5 flex-initial gap-y-4">
           <AccentButton text="Создать личный кабинет" />
-          <p className="text-[12px] text-center text-white">Войти</p>
+          <p className="text-[12px] text-center z-[7] text-[#808080]">Войти</p>
         </div>
       </section>
       <section className="flex flex-col gap-y-4  text-white ">
@@ -60,11 +61,13 @@ export default function Home() {
         <Title className="px-[10px]" text="Как это работает" />
         <section className="rounded-md pb-5 px-[10px]">
           <h4 className="text-[18px]">Вам нужно</h4>
-          <ol className="pl-[64px] list leading-loose">
-            <li className="">- Перейти в приложение</li>
-            <li>- Зарегистрироваться</li>
-            <li>- Добавить животное</li>
-            <li>- Добавить время работы</li>
+          <ol className="list leading-loose">
+            {detailsSteps.map((step) => (
+              <li key={step.id}>
+                <span className="text-stone-650">Шаг - {step.id}</span> -{" "}
+                {step.text}
+              </li>
+            ))}
           </ol>
         </section>
         <AccentButton text="Начать сейчас" />

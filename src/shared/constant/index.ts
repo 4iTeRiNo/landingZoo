@@ -91,3 +91,10 @@ export const mockSocial = [
   { id: 2, text: "facebook icon", image: "/facebook.svg" },
   { id: 3, text: "instagram icon", image: "/instagram_dark.svg" },
 ];
+
+export const detailsSteps = [
+  { id: 1, text: "Перейти в приложение" },
+  { id: 2, text: "Зарегистрироваться" },
+  { id: 3, text: "Добавить животное" },
+  { id: 4, text: "Добавить время работы" },
+];

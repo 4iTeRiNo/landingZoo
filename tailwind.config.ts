@@ -24,8 +24,8 @@ const config: Config = {
       },
       keyframes: {
         moveToLeft: {
-          "0%": {
-            transform: "translateX(100%)",
+          "0%, 50%": {
+            transform: "translateX(15px)",
             opacity: "0",
           },
           "100%": {
@@ -34,19 +34,33 @@ const config: Config = {
           },
         },
         moveToLeftLinks: {
-          "0%": {
-            transform: "translateX(90%)",
+          "0%, 50%, 70%": {
+            transform: "translateX(15px)",
             opacity: "0",
           },
           "100%": {
-            transform: "translateX(0)",
             opacity: "1",
+          },
+        },
+        moveToTop: {
+          "0%": {
+            opacity: "0",
+          },
+
+          "100%": {
+            opacity: "1",
+          },
+        },
+        animationDuration: {
+          "0%, 100%": {
+            transition: "1s ease-in",
           },
         },
       },
       animation: {
-        moveToLeft: "moveToLeft 0.3s ease-in-out_forwards",
-        moveToLeftLinks: "moveToLeftLinks 0.5s ease-in-out forwards",
+        moveToLeft: "moveToLeft 0.5s ease forwards",
+        moveToLeftLinks: "moveToLeftLinks 1.1s ease forwards",
+        moveToTop: "moveToTop 0.5s ease-in-out forwards",
       },
       colors: {
         grey: {

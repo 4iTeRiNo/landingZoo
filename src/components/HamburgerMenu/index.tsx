@@ -22,49 +22,59 @@ const HamburgerMenu = () => {
   return (
     <>
       <button
-        className="space-y-2 w-[35px] pl-2 block h-5 z-[11]"
+        className="relative space-y-2 w-[26px] h-15px bottom-0  right-0 block  z-[13]"
         onClick={() => setIsNavOpen(!isNavOpen)}
         onKeyDown={() => setIsNavOpen(!isNavOpen)}
       >
         {!isNavOpen ? (
           <>
-            <span className="block h-0.5 w-[26px] duration-500 animate-pulse bg-white" />
-            <span className="block h-0.5 w-[26px] duration-500 animate-pulse bg-white" />
-            <span className="block h-0.5 w-[26px]  animate-pulse bg-white" />
+            <span className="block h-0.5 w-[26px] animate-moveToTop   rotate-0  bg-white" />
+            <span className="block h-0.5 w-[26px] animate-moveToTop rotate-0  bg-white" />
+            <span className="block h-0.5 w-[26px] animate-moveToTop rotate-0  bg-white" />
           </>
         ) : (
           <>
-            <span className="block h-0.5 w-[26px] duration-300 relative top-[21px] right-5 rotate-45  bg-white z-[11]" />
-            <span className="block h-0.5 w-[26px] duration-300 relative top-[11px] right-5 rotate-[135deg] bg-white z-[11]" />
+            <span
+              className="block h-0.5 w-[26px] duration-700 relative top-[21px] 
+            right-5 rotate-[225deg]  bg-white z-[11]"
+            />
+            <span
+              className="block h-0.5 w-[26px duration-700 relative top-[11px]
+            right-5 rotate-[135deg] bg-white z-[11]"
+            />
           </>
         )}
       </button>
       {isNavOpen ? (
         <section
           ref={menuRef}
-          className="flex flex-col animate-moveToLeft gap-y-[25px] py-4 px-[18px] absolute w-11/12 h-[600px] z-[10] left-0 right-0 mx-auto space-y-0 top-[30px] bottom-0 rounded-md  bg-stone-850 "
+          className="flex flex-col animate-moveToLeft  gap-y-[25px] py-4 px-[18px] absolute w-11/12 
+          h-[600px] z-[10] left-0 right-0 mx-auto space-y-0 top-[30px] bottom-0 rounded-md bg-stone-850 "
         >
           <section className="flex flex-col gap-y-[42px]">
             <Toggle className="animate-moveToLeftLinks" />
-            <div className="flex flex-col items-start gap-y-5">
+            <div className="flex flex-col items-start gap-y-[15px]">
               {navigateLinks.map((link) => (
                 <li
-                  className="text-white text-[18px] font-medium list-none animate-[moveToLeftLinks_0.6s_ease-in-out_forwards]"
+                  className="text-white text-[20px] font-medium list-none 
+                  animate-[moveToLeftLinks_1.3s]"
                   key={link.id}
                 >
                   {link.text}
                 </li>
               ))}
             </div>
-            <div className="flex flex-col w-full  gap-y-4 text-white items-start">
+            <div className="flex flex-col w-full gap-y-4 text-white items-start">
               <Title
-                className="w-full text-left animate-[moveToLeftLinks_0.7s_ease-in-out_forwards]"
+                className="w-full text-left animate-[moveToLeftLinks_1.4s]"
                 text="Контакты"
               />
               {mutateContacts.map((contact) => (
                 <li
                   key={contact.id}
-                  className="flex flex-col items-start animate-[moveToLeftLinks_0.8s_ease-in-out_forwards] w-full border-b-[1px] border-stone-750  pb-4 last:border-none last:pb-0"
+                  className="flex flex-col gap-y-1 items-start 
+                  animate-[moveToLeftLinks_1.5s] w-full border-b-[1px]
+                  border-stone-750  pb-4 last:border-none last:pb-0"
                 >
                   <h4 className="text-[16px] font-medium leading-none">
                     {contact.title}
@@ -83,7 +93,7 @@ const HamburgerMenu = () => {
                 key={social.id}
                 width={26}
                 height={26}
-                className="aspect-square animate-[moveToLeftLinks_1s_ease-in-out_forwards]"
+                className="aspect-square animate-[moveToLeftLinks_1.6s]"
                 src={social.image}
                 alt={social.text}
               />
