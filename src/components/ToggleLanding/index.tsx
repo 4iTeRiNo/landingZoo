@@ -19,7 +19,6 @@ const Toggle = ({ className }: { className?: string }) => {
         <input
           onClick={() => setToggleTheme(!toggleTheme)}
           type="checkbox"
-          id="toggle-button"
           className="toggle_button"
         />
       </label>

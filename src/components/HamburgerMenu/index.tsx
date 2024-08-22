@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { MouseEventHandler, useEffect, useState } from "react";
 import Image from "next/image";
 import { mockContacts, mockSocial, navigateLinks } from "@/shared/constant";
 
@@ -20,36 +20,32 @@ const HamburgerMenu = () => {
   );
 
   return (
-    <>
+    <section ref={menuRef}>
       <button
-        className="relative space-y-2 w-[26px] h-15px bottom-0  right-0 block  z-[13]"
-        onClick={() => setIsNavOpen(!isNavOpen)}
+        className={`relative flex flex-col space-y-2 w-[26px] h-10px bottom-0 
+          ${isNavOpen && "right-[12px]"}  right-0 block  z-[13]`}
+        onClick={() => {
+          setIsNavOpen(!isNavOpen);
+        }}
         onKeyDown={() => setIsNavOpen(!isNavOpen)}
       >
-        {!isNavOpen ? (
-          <>
-            <span className="block h-0.5 w-[26px] animate-moveToTop   rotate-0  bg-white" />
-            <span className="block h-0.5 w-[26px] animate-moveToTop rotate-0  bg-white" />
-            <span className="block h-0.5 w-[26px] animate-moveToTop rotate-0  bg-white" />
-          </>
-        ) : (
-          <>
-            <span
-              className="block h-0.5 w-[26px] duration-700 relative top-[21px] 
-            right-5 rotate-[225deg]  bg-white z-[11]"
-            />
-            <span
-              className="block h-0.5 w-[26px duration-700 relative top-[11px]
-            right-5 rotate-[135deg] bg-white z-[11]"
-            />
-          </>
-        )}
+        {" "}
+        <span
+          className={`inline-block h-0.5 w-[26px] relative animate-moveToTop 
+            ${isNavOpen && "duration-700 rotate-[135deg] top-[5px] "} rotate-0  bg-white`}
+        />
+        <span
+          className={`inline-block h-0.5 w-[26px] relative animate-moveToTop 
+            ${isNavOpen && "duration-700 rotate-[225deg] top-[-5px]"} rotate-0  bg-white`}
+        />
+        <span
+          className={`block h-0.5 w-[26px] animate-moveToTop ${isNavOpen && "hidden"} rotate-0  bg-white`}
+        />
       </button>
-      {isNavOpen ? (
+      {isNavOpen && (
         <section
-          ref={menuRef}
           className="flex flex-col animate-moveToLeft  gap-y-[25px] py-4 px-[18px] absolute w-11/12 
-          h-[600px] z-[10] left-0 right-0 mx-auto space-y-0 top-[30px] bottom-0 rounded-md bg-stone-850 "
+          h-[600px] z-[11] left-0 right-0 mx-auto space-y-0 top-[30px] bottom-0 rounded-md bg-stone-850 "
         >
           <section className="flex flex-col gap-y-[42px]">
             <Toggle className="animate-moveToLeftLinks" />
@@ -100,8 +96,8 @@ const HamburgerMenu = () => {
             ))}
           </section>
         </section>
-      ) : null}
-    </>
+      )}
+    </section>
   );
 };
 export default HamburgerMenu;

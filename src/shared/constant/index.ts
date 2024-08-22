@@ -1,4 +1,3 @@
-import { text } from "stream/consumers";
 import { Comments, Contacts, Faqs } from "../types";
 
 export const mockComments: Comments = [
@@ -76,7 +75,7 @@ export const navigateLinks = [
   },
   {
     id: 5,
-    text: "Констакты",
+    text: "Контакты",
     link: "/contacts",
   },
   {
