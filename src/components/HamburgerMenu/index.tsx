@@ -44,7 +44,7 @@ const HamburgerMenu = () => {
       </button>
       {isNavOpen && (
         <section
-          className="flex flex-col animate-moveToLeft  gap-y-[25px] py-4 px-[18px] absolute w-11/12 
+          className="flex flex-col animate-moveToLeft gap-y-[25px] py-4 px-[18px] absolute w-11/12 
           h-[600px] z-[11] left-0 right-0 mx-auto space-y-0 top-[30px] bottom-0 rounded-md bg-stone-850 "
         >
           <section className="flex flex-col gap-y-[42px]">

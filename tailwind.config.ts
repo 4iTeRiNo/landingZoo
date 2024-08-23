@@ -5,6 +5,7 @@ const config: Config = {
     "./src/pages/**/*.{js,ts,jsx,tsx,mdx}",
     "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
     "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
+    "./node_modules/@nextui-org/theme/dist/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
     extend: {
@@ -72,6 +73,7 @@ const config: Config = {
           650: "var(--stone650)",
           750: "var(--stone750)",
           850: "var(--stone850)",
+          890: "var(--stone890)",
           950: "var(--stone950)",
         },
         black: "var(--black)",

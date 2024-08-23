@@ -1,3 +1,4 @@
+import Footer from "@/components/Footer";
 import type { Metadata } from "next";
 import { nunito, openSans, roboto } from "./fonts";
 import "./globals.css";
@@ -19,6 +20,7 @@ export default function RootLayout({
       ${roboto.variable}`}
       >
         {children}
+        <Footer />
       </body>
     </html>
   );

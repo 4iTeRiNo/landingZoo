@@ -7,8 +7,6 @@ import {
   mockComments,
   mockContacts,
   mockFaqs,
-  mockSocial,
-  navigateLinks,
 } from "@/shared/constant";
 import Image from "next/image";
 
@@ -64,7 +62,7 @@ export default function Home() {
           <ol className="list leading-loose">
             {detailsSteps.map((step) => (
               <li key={step.id}>
-                <span className="text-stone-650">Шаг - {step.id}</span> -{" "}
+                <span className="text-stone-650">[Шаг - {step.id}]</span> -{" "}
                 {step.text}
               </li>
             ))}
@@ -88,16 +86,7 @@ export default function Home() {
         <Title text="FAQ" />
         {mockFaqs.map((faq) => (
           <details key={faq.id}>
-            <summary>
-              {faq.title}{" "}
-              <Image
-                width={12}
-                height={9}
-                className="aspect-square"
-                src="/arrow-faq.svg"
-                alt="arrow"
-              />{" "}
-            </summary>
+            <summary>{faq.title}</summary>
             <p>{faq.content}</p>
           </details>
         ))}
@@ -119,38 +108,6 @@ export default function Home() {
             <span>{contact.contact}</span>
           </div>
         ))}
-      </section>
-      <section>
-        <ul className="flex flex-row flex-wrap text-white gap-x-5 gap-y-5  justify-center list-disc first:marker:text-transparent">
-          {navigateLinks.map((link) => (
-            <li
-              key={link.id}
-              className="text-[12px] leading-[140%] text-nowrap marker:text-green-600  pr-5 target:marker:text-transparent"
-            >
-              {link.text}
-            </li>
-          ))}
-        </ul>
-      </section>
-      <section className="flex flex-row justify-between px-[10px] pt-5   border-t-[1px] border-stone-750">
-        <div className="flex flex-col gap-y-3 ">
-          <h4 className="text-[11px] text-stone-750">
-            Политика конфиденциальности
-          </h4>
-          <h4 className="text-[11px] text-stone-750">Условия использования</h4>
-        </div>
-        <div className="flex flex-row gap-x-5">
-          {mockSocial.map((social) => (
-            <Image
-              key={social.id}
-              width={20}
-              height={20}
-              className="aspect-square"
-              src={social.image}
-              alt={social.text}
-            />
-          ))}
-        </div>
       </section>
     </main>
   );

@@ -10,16 +10,16 @@ const Toggle = ({ className }: { className?: string }) => {
   }, [toggleTheme]);
 
   return (
-    <div className={`toggle_wrapper text-white ${className}`}>
+    <div className={`toggle_wrapper text-white  ${className}`}>
       <label
         htmlFor="toggle-button"
-        className="flex flex-row gap-x-2 items-center"
+        className="flex flex-row gap-x-2 text-white items-center"
       >
         <span>{theme}</span>
         <input
           onClick={() => setToggleTheme(!toggleTheme)}
           type="checkbox"
-          className="toggle_button"
+          className="toggle_button border-white"
         />
       </label>
     </div>

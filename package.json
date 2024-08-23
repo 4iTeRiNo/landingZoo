@@ -10,10 +10,13 @@
     "prepare": "husky"
   },
   "dependencies": {
+    "@internationalized/date": "^3.5.5",
     "next": "14.2.5",
     "react": "^18",
     "react-dom": "^18",
-    "react-hook-form": "^7.52.2"
+    "react-hook-form": "^7.52.2",
+    "rsuite": "^5.69.0",
+    "tailwind-variants": "^0.2.1"
   },
   "devDependencies": {
     "@next/eslint-plugin-next": "^14.2.5",

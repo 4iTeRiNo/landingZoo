@@ -1,6 +1,7 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+@import "rsuite/dist/rsuite.css";
 
 body {
   box-sizing: border-box;
@@ -9,6 +10,7 @@ body {
   --stone550: #808080;
   --stone650: #888;
   --stone750: #373737;
+  --stone890: #2f2f2f;
   --stone850: #262626;
   --stone950: #232323;
   --black: #000;
@@ -36,19 +38,53 @@ body {
   }
 
   summary {
-    display: inline-flex;
+    cursor: pointer;
+    display: flex;
     justify-content: space-between;
+    padding-right: 15px;
     align-items: center;
-    width: 100%;
     transition: 1s transform ease;
   }
 
-  details[open] > summary:before {
-    transform: rotate(90deg);
-    transition: 0.45s transform ease;
+  @keyframes openDetails {
+    0% {
+      height: 0;
+      opacity: 0;
+    }
+    100% {
+      height: fit-content;
+      opacity: 1;
+    }
+  }
+
+  details[open] > p {
+    animation: openDetails 0.5s ease forwards;
+  }
+
+  details > summary::after {
+    content: url("/arrow-faq.svg");
+    position: relative;
+    display: inline-block;
+    width: 12px;
+    height: 14px;
+    transition: 0.3s transform ease;
+    transform: rotate(-90deg);
+  }
+
+  details[open] > summary::after {
+    align-items: end;
+    width: 12px;
+    height: 10px;
+    transform: rotate(0deg);
+    transition: 0.3s transform ease;
   }
 }
 
+li:nth-child(5n)::marker {
+  color: transparent;
+}
+
+/* Toggle Switch */
 .toggle_button {
   position: relative;
   display: inline-block;
@@ -57,8 +93,8 @@ body {
   height: 15px;
   margin: 0;
   vertical-align: top;
-  background: transparent;
-  border: 1px solid white;
+  background-color: transparent;
+  border: 1px solid #fff;
   border-radius: 50px;
   outline: none;
   cursor: pointer;
@@ -66,14 +102,13 @@ body {
   -moz-appearance: none;
   appearance: none;
 }
-
 .toggle_button::after {
   content: "";
 
   display: inline-block;
   position: absolute;
   left: 3px;
-  top: 20%;
+  top: 24%;
 
   width: 7px;
   height: 7px;
@@ -83,7 +118,6 @@ body {
   transform: translateX(0);
   transition: 0.3s;
 }
-
 .toggle_button:checked::after {
   transform: translateX(calc(100% + 9px));
   background-color: #fff;
@@ -91,4 +125,55 @@ body {
 .toggle_button:checked {
   background-color: transparent;
   transition: all 0.3s cubic-bezier(0.2, 0.85, 0.32, 1.2);
+}
+
+/* Custom Select */
+
+.custom_select {
+  min-width: 350px;
+  position: relative;
+}
+
+.custom_select select {
+  appearance: none;
+  width: 100%;
+  font-size: 16px;
+  padding-left: 10px;
+  padding-bottom: 10px;
+  background-color: transparent;
+  border-bottom: 1px solid var(--stone750);
+  color: white;
+  cursor: pointer;
+  outline: none;
+}
+option {
+  background-color: var(--indigo950);
+  color: white;
+}
+option.important {
+  background-color: #ffcc00 !important;
+}
+
+.custom_select::before,
+.custom_select::after {
+  --size: 0.3rem;
+  content: "";
+  position: absolute;
+  background-color: transparent;
+  right: 1rem;
+  pointer-events: none;
+}
+
+.custom_select::before {
+  border-left: solid transparent;
+  border-right: solid transparent;
+  border-bottom: 4px solid var(--stone650);
+  top: 40%;
+}
+
+.custom_select::after {
+  border-left: solid transparent;
+  border-right: solid transparent;
+  border-top: 4px solid var(--stone650);
+  top: 55%;
 }
