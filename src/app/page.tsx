@@ -14,17 +14,16 @@ const happyCat = "happy-cat.svg";
 
 export default function Home() {
   return (
-    <main className="bg-indigo-950 pl-4  pb-7  pr-4 flex flex-col gap-y-10">
-      <section className="flex w-full g pt-[30px] pb-8 items-center justify-center  flex-col h-[667px] align-middle object-cover">
-        <Header />
-        <div className="flex-1 flex flex-col text-white z-[5] font-normal top-28 w-full gap-y-7 ">
-          <li className="text-[13px] marker:text-orange-700">
+    <main className="bg-indigo-950 px-[4.2vw] pb-7 flex flex-col gap-y-10 border-b-0">
+      <section className="flex w-full pb-8 items-center justify-center  flex-col h-[576px] align-middle object-cover">
+        <div className="flex-1 flex flex-col text-white z-[5] font-normal w-full gap-y-[30px] ">
+          <li className="text-xs marker:text-orange-700">
             Добро пожаловать мы - ZooRama
           </li>
-          <h1 className="font-bold text-4xl text  leading-8">
+          <h1 className="font-bold text-4xl  leading-9">
             Ваш надежный партнер по уходу за питомцами
           </h1>
-          <p className="text-[16px] text-balance">
+          <p className="text-base leading-6 text-balance">
             Присоединяйтесь к нашему сообществу и управляйте уходом за питомцами
             легкостью!
           </p>
@@ -40,7 +39,7 @@ export default function Home() {
       </section>
       <section className="flex flex-col gap-y-4  text-white ">
         <Title text="Почему стоит выбрать наше приложение?" />
-        <p className="text-[18px] text-balance leading-normal pb-2">
+        <p className="text-lg leading-6 text-balance pb-2">
           Наше приложение упрощает уход за питомцами: безопасная регистрация,
           удобные профили, персональные графики и доступность везде и всегда.
         </p>
@@ -52,33 +51,35 @@ export default function Home() {
             src={happyCat}
             alt="Happy_cat"
           />
-          <AccentButton text="В приложение" />
+          <AccentButton isIcon text="В приложение" />
         </div>
       </section>
-      <section className="flex flex-col gap-y-4 pt-3 bg-stone-850 text-white  ">
-        <Title className="px-[10px]" text="Как это работает" />
-        <section className="rounded-md pb-5 px-[10px]">
-          <h4 className="text-[18px]">Вам нужно</h4>
-          <ol className="list leading-loose">
+      <section className="flex flex-col gap-y-4 pt-3 bg-stone-850 text-white">
+        <Title className="px-[2.8vw]" text="Как это работает" />
+        <section className="rounded-md gap-y-3  px-[2.8vw]">
+          <h4 className="text-lg">Вам нужно</h4>
+          <ol className="flex flex-col gap-y-[3.9vw]">
             {detailsSteps.map((step) => (
-              <li key={step.id}>
-                <span className="text-stone-650">[Шаг - {step.id}]</span> -{" "}
-                {step.text}
+              <li key={step.id} className="text-sm leading-6">
+                <span className="text-stone-650 text-sm">
+                  [Шаг - {step.id}]
+                </span>{" "}
+                - {step.text}
               </li>
             ))}
           </ol>
         </section>
-        <AccentButton text="Начать сейчас" />
+        <AccentButton isIcon text="Начать сейчас" />
       </section>
       <section className="gap-y-4 flex flex-col text-white">
         <Title text="Отзывы" />
         {mockComments.map((comment) => (
-          <div key={comment.id} className="flex flex-col gap-y-[5px]">
-            <h4 className="text-[16px] font-medium">{comment.name}</h4>
-            <span className="text-[12px] text-stone-550">
+          <div key={comment.id} className="flex flex-col gap-y-[1.4vw]">
+            <h4 className="text-base font-medium">{comment.name}</h4>
+            <span className="text-xs leading-6 text-stone-550">
               {comment.subtitle}
             </span>
-            <p className="text-[12px] ">{comment.comment}</p>
+            <p className="text-sm">{comment.comment}</p>
           </div>
         ))}
       </section>
@@ -86,16 +87,18 @@ export default function Home() {
         <Title text="FAQ" />
         {mockFaqs.map((faq) => (
           <details key={faq.id}>
-            <summary>{faq.title}</summary>
-            <p>{faq.content}</p>
+            <summary className="text-base font-medium pb-[2.5vw]">
+              {faq.title}
+            </summary>
+            <p className="text-sm leading-6">{faq.content}</p>
           </details>
         ))}
       </section>
       <section className="gap-y-4 flex flex-col text-white">
-        <h2 className="text-[29px] text-balance">
+        <h2 className="text-3xl text-balance leading-9">
           Готовы упростить уход за вашим питомцем?
         </h2>
-        <AccentButton text="Зарегистрироваться сейчас" />
+        <AccentButton isIcon text="Зарегистрироваться сейчас" />
       </section>
       <section className="gap-y-4 flex flex-col text-white">
         <Title text="Контакты" />
@@ -104,8 +107,8 @@ export default function Home() {
             key={contact.id}
             className="flex flex-col gap-y-[5px] border-b-[1px] border-stone-750  pb-4"
           >
-            <h4>{contact.title}</h4>
-            <span>{contact.contact}</span>
+            <h4 className="text-base font-medium">{contact.title}</h4>
+            <span className="text-sm leading-6">{contact.contact}</span>
           </div>
         ))}
       </section>

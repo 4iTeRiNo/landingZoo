@@ -1,6 +1,7 @@
 import Footer from "@/components/Footer";
 import type { Metadata } from "next";
-import { nunito, openSans, roboto } from "./fonts";
+import Header from "@/components/Header";
+import { nunito, openSans, roboto, montserrat } from "./fonts";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -17,8 +18,9 @@ export default function RootLayout({
     <html lang="en" suppressHydrationWarning>
       <body
         className={`${nunito.variable} ${openSans.variable} 
-      ${roboto.variable}`}
+      ${roboto.variable} ${montserrat}`}
       >
+        <Header />
         {children}
         <Footer />
       </body>

@@ -1,4 +1,9 @@
-import { Nunito, Open_Sans as OpenSans, Roboto } from "next/font/google";
+import {
+  Nunito,
+  Montserrat,
+  Open_Sans as OpenSans,
+  Roboto,
+} from "next/font/google";
 
 export const nunito = Nunito({
   subsets: ["latin"],
@@ -16,4 +21,10 @@ export const roboto = Roboto({
   subsets: ["latin"],
   weight: ["400"],
   variable: "--roboto-font",
+});
+
+export const montserrat = Roboto({
+  subsets: ["latin"],
+  weight: ["400", "700"],
+  variable: "--montserrat-font",
 });

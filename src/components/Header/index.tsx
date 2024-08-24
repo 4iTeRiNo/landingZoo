@@ -4,9 +4,9 @@ import Toggle from "../ToggleLanding";
 
 const Header = () => {
   return (
-    <div className="flex-none flex flex-row gap-x-5 justify-between w-full z-10 pb-9 pt-2">
+    <div className="flex-none flex flex-row gap-x-5 justify-between w-full z-10 pb-9 px-[16px] pt-[30px]">
       <Image
-        className="aspect-auto"
+        className="aspect-auto z-10"
         src="logo.svg"
         alt="logo"
         width={161}
