@@ -22,8 +22,8 @@ const HamburgerMenu = () => {
   return (
     <section ref={menuRef}>
       <button
-        className={`relative flex flex-col space-y-2 w-[26px] h-10px bottom-0 
-          ${isNavOpen && "right-[12px]"}  right-0 block  z-[13]`}
+        className={`relative flex flex-col space-y-2 w-[26px] h-10px bottom-0
+          ${isNavOpen && "right-[12px] bottom-[-2.7vw] "} right-0 block z-[13]`}
         onClick={() => {
           setIsNavOpen(!isNavOpen);
         }}
@@ -44,15 +44,15 @@ const HamburgerMenu = () => {
       </button>
       {isNavOpen && (
         <section
-          className="flex flex-col animate-moveToLeft gap-y-[25px] py-4 px-[18px] absolute w-11/12 
-          h-[600px] z-[11] left-0 right-0 mx-auto space-y-0 top-[30px] bottom-0 rounded-md bg-stone-850 "
+          className="flex flex-col animate-moveToLeft gap-y-[25px] py-4 px-[5vw] absolute w-11/12 
+          h-[625px] z-[11] left-0 right-0 mx-auto space-y-0 top-[30px] bottom-0 rounded-md bg-stone-850 "
         >
           <section className="flex flex-col gap-y-[42px]">
             <Toggle className="animate-moveToLeftLinks" />
             <div className="flex flex-col items-start gap-y-[15px]">
               {navigateLinks.map((link) => (
                 <li
-                  className="text-white text-[20px] font-medium list-none 
+                  className="text-white text-xl font-medium list-none 
                   animate-[moveToLeftLinks_1.3s]"
                   key={link.id}
                 >
@@ -72,10 +72,10 @@ const HamburgerMenu = () => {
                   animate-[moveToLeftLinks_1.5s] w-full border-b-[1px]
                   border-stone-750  pb-4 last:border-none last:pb-0"
                 >
-                  <h4 className="text-[16px] font-medium leading-none">
+                  <h4 className="text-base leading-7 font-medium">
                     {contact.title}
                   </h4>
-                  <span className="text-[12px] leading-normal">
+                  <span className="text-xs font-bold leading-normal">
                     {contact.contact}
                   </span>
                 </li>
