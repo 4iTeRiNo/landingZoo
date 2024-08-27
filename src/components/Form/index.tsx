@@ -1,149 +1,62 @@
 "use client";
 
 /* eslint-disable react/jsx-props-no-spreading */
+
+import { SelectOptions } from "@/shared/types";
+import { DatePicker, TimeInput } from "@nextui-org/react";
+import Image from "next/image";
 import React, { useEffect, useState } from "react";
-import { useForm, SubmitHandler, FieldValues } from "react-hook-form";
-import { patternValue } from "@/shared/constant/errorWord";
-import { FormRegister, FormValues, SelectOptions } from "@/shared/types";
+import { Controller, useForm } from "react-hook-form";
 import AccentButton from "../ButtonAccent";
-import DatePickerComponent from "../Date";
+import Title from "../TitleAccent";
+
+type FormValues = {
+  name: string;
+  gender: string;
+  breed: string;
+  weight: string;
+  feature: string;
+  age: string;
+  phone: string;
+  workDate: string;
+  workTime: string;
+  // error: string
+};
 
 enum GenderEnum {
   female = "female",
   male = "male",
 }
 
-const formSetting: FormValues[] = [
-  {
-    id: 1,
-    label: {
-      text: "Имя питомца",
-    },
-    input: {
-      register: FormRegister.namePet,
-      validate: patternValue,
-      required: "Обязательное поле",
-      message: "Пожалуйста, введите корректное значение",
-      type: "text",
-    },
-  },
-  {
-    id: 2,
-    label: {
-      text: "Порода",
-    },
-    input: {
-      register: FormRegister.breed,
-      validate: patternValue,
-
-      required: "Обязательное поле",
-      message: "Пожалуйста, введите корректное значение",
-      type: "text",
-    },
-  },
-  {
-    id: 3,
-    label: {
-      text: "Возвраст",
-    },
-    input: {
-      register: FormRegister.age,
-      validate: /^(100|\d{1,2})$/,
-      required: "Обязательное поле",
-      message: "Пожалуйста, введите корректное значение",
-      type: "number",
-    },
-  },
-  {
-    id: 4,
-    label: {
-      text: "Пол",
-    },
-    input: {
-      register: FormRegister.gender,
-      validate: patternValue,
-      required: "Обязательное поле",
-      message: "Пожалуйста, введите корректное значение",
-      type: "text",
-    },
-  },
-  {
-    id: 5,
-    label: {
-      text: "Вес",
-    },
-    input: {
-      register: FormRegister.weight,
-      validate: /^(100|\d{1,2})$/,
-      required: "Обязательное поле",
-      message: "Пожалуйста, введите корректное значение",
-      type: "number",
-    },
-  },
-  {
-    id: 6,
-    label: {
-      text: "Особоые приметы или аллергии",
-    },
-    input: {
-      register: FormRegister.features,
-      validate: patternValue,
-      required: "Обязательное поле",
-      message: "Пожалуйста, введите корректное значение",
-      type: "text",
-    },
-  },
-  {
-    id: 7,
-    label: {
-      text: "Время работы ",
-    },
-    input: {
-      register: FormRegister.date,
-      validate: /^(100|\d{1,2})$/,
-      required: "Обязательное поле",
-      message: "Пожалуйста, введите корректное значение",
-      type: "text",
-    },
-  },
-  {
-    id: 8,
-    label: {
-      text: "Телефон для связи",
-    },
-    input: {
-      register: FormRegister.phone,
-      validate: /^(\+7|8)\d{10}$/,
-      required: "Обязательное поле",
-      message: "Пожалуйста, введите корректное значение",
-      type: "text",
-    },
-  },
-];
-
 const Genders: SelectOptions[] = [
   {
     id: 1,
     value: GenderEnum.female,
-    text: "Девочка",
+    label: "Девочка",
   },
   {
     id: 2,
-    value: GenderEnum.female,
-    text: "Мальчик",
+    value: GenderEnum.male,
+    label: "Мальчик",
   },
 ];
 
-export default function Form() {
+export default function App() {
+  const [gender, setGender] = useState("Пол");
+
   const {
     register,
+    control,
     handleSubmit,
-    formState: { errors },
+    // formState: { error },
+    setValue,
     reset,
-  } = useForm<FieldValues>({ mode: "onChange" });
-  const onSubmit: SubmitHandler<FieldValues> = (data) => {
-    console.log(data);
-    reset();
+  } = useForm<FormValues>();
+  // eslint-disable-next-line no-console
+  const onSubmit = handleSubmit((data) => console.log(data));
+
+  const handleChange = (value: Date) => {
+    setValue("workDate", value.toISOString());
   };
 
   useEffect(() => {
@@ -152,79 +65,164 @@ export default function Form() {
 
   return (
     <form
-      noValidate
+      onSubmit={onSubmit}
       className="flex flex-col gap-y-5 pb-[36px] items-center w-full text-stone-550"
-      onSubmit={handleSubmit(onSubmit)}
     >
-      {formSetting.map((form) => {
-        const regParams = form.input.register;
-        if (regParams) {
-          const error = errors[regParams];
-          if (regParams === "gender") {
-            return (
-              <section key={form.id} className="custom_select">
-                <select>
-                  <option className="text-[12px] text-stone-750">Пол</option>
-                  {Genders.map((gender) => (
-                    <option
-                      key={gender.id}
-                      className="text-[12px]"
-                      value={gender.value}
-                    >
-                      {gender.text}
-                    </option>
-                  ))}
-                </select>
-              </section>
-            );
-          }
-          if (regParams === "date") {
-            return (
-              <React.Fragment key={form.id}>
-                <DatePickerComponent />;
-              </React.Fragment>
-            );
-          }
+      <label
+        htmlFor="name"
+        className={`w-full border-b-[1px]  leading-6 border-stone-890 `}
+      >
+        <input
+          {...register("name")}
+          id="name"
+          placeholder="Имя"
+          type="text"
+          className={`bg-transparent w-full text-white pl-[10px] text-sm placeholder:text-base 
+                    focus-visible:outline-none  h-[35px] `}
+        />
+      </label>
+      <label
+        htmlFor="breed"
+        className={`w-full border-b-[1px]  leading-6 border-stone-890 `}
+      >
+        <input
+          {...register("breed")}
+          id="breed"
+          type="text"
+          placeholder="Порода"
+          className={`bg-transparent w-full text-white pl-[10px] text-sm placeholder:text-base
+                      focus-visible:outline-none  h-[35px] `}
+        />
+      </label>
+      <label
+        htmlFor="age"
+        className={`w-full border-b-[1px]  leading-6 border-stone-890 `}
+      >
+        <input
+          {...register("age")}
+          id="age"
+          type="number"
+          placeholder="Возраст"
+          className={`bg-transparent w-full text-white pl-[10px] text-sm placeholder:text-base
+                      focus-visible:outline-none  h-[35px] `}
+        />
+      </label>
+      <label
+        htmlFor="weight"
+        className={`w-full border-b-[1px]  leading-6 border-stone-890 `}
+      >
+        <input
+          {...register("weight")}
+          id="weight"
+          type="number"
+          placeholder="Вес"
+          className={`bg-transparent w-full text-white pl-[10px] text-sm placeholder:text-base
+                      focus-visible:outline-none  h-[35px] `}
+        />
+      </label>
+      <label
+        htmlFor="phone"
+        className={`w-full border-b-[1px]  leading-6 border-stone-890 `}
+      >
+        <input
+          id="phone"
+          type="tel"
+          placeholder="Телефон"
+          {...register("phone")}
+          className={`bg-transparent w-full text-white pl-[10px] text-sm placeholder:text-base
+                      focus-visible:outline-none  h-[35px] `}
+        />
+      </label>
+      <label
+        htmlFor="feature"
+        className={`w-full border-b-[1px]  leading-6 border-stone-890 `}
+      >
+        <input
+          id="feature"
+          type="text"
+          placeholder="Особые приметы или аллергии "
+          {...register("feature")}
+          className={`bg-transparent w-full text-white pl-[10px] text-sm placeholder:text-base
+                      focus-visible:outline-none  h-[35px] `}
+        />
+      </label>
 
-          return (
-            <label
-              key={form.id}
-              className={`w-full border-b-[1px] border-stone-890 ${error && "border-red-400"}`}
-              htmlFor={form.input.register}
-            >
-              <input
-                id={form.input.register}
-                type={form.input.type}
-                autoComplete="off"
-                className={`bg-transparent w-full text-white pl-[10px] text-base placeholder:text-base focus-visible:outline-none  h-[35px] ${true && "error"}`}
-                {...(regParams &&
-                  register(regParams, {
-                    required: form.input.required,
-                    pattern: {
-                      value: form.input.validate,
-                      message: form.input.message,
-                    },
-                  }))}
-                placeholder={form.label.text}
-              />
-              {regParams && errors[regParams] && (
-                <span className="text-[12px] text-red-400">
-                  {`${error?.message}`}
-                </span>
+      <section className="flex flex-col w-full gap-y-4">
+        <section className="w-full flex justify-between">
+          <label
+            htmlFor="gender"
+            className={`${gender === "Пол" ? "text-stone-550" : "text-white"}`}
+            title="Пол"
+          >
+            {gender}
+          </label>
+          <Image src="/arrow-faq.svg" width={12} height={12} alt="arrow" />
+        </section>
+
+        <section className="w-[91.6vw] h-[40.8vw] rounded-md bg-stone-850 px-3 py-3">
+          <Title
+            className="text-white border-b-[1px] border-stone-750 pb-4"
+            text="Выберите пол  вашего питомца"
+          />
+          {Genders.map((gender) => (
+            <Controller
+              control={control}
+              key={gender.id}
+              name="gender"
+              rules={{ required: "Выбирите пожалуйста пол питомца" }}
+              render={({ field }) => (
+                <label className="container" htmlFor="gender">
+                  <input
+                    {...field}
+                    id="gender"
+                    type="radio"
+                    value={gender.value}
+                    onChange={() =>
+                      field.onChange(gender.value, setGender(gender.label))
+                    }
+                  />
+                  <span className="checkmark" />
+                  {gender.label}
+                </label>
               )}
-            </label>
-          );
-        }
-        reset();
-        return null;
-      })}
-      <AccentButton
-        props={{
-          disabled: errors && Object.keys(errors).length > 0,
-          className: "disabled:bg-transparent disabled:cursor-not-allowed",
-        }}
-        text="Сохранить"
-      />
+            />
+          ))}
+        </section>
+      </section>
+
+      <section className="w-[91.6vw] h-fit flex flex-col gap-y-4 rounded-md bg-stone-850 px-3 py-3">
+        <Title text="Добавить время работы" />
+        <Controller
+          name="workDate"
+          control={control}
+          render={() => (
+            <DatePicker
+              label="Рабочие часы"
+              className="w-full pt-3"
+              isRequired
+              onChange={(date) => handleChange(date.toDate("Europe/Moscow"))}
+              validationBehavior="aria"
+            />
+          )}
+        />
+        <Controller
+          name="workTime"
+          control={control}
+          render={() => (
+            <TimeInput
+              label="Meeting time"
+              hourCycle={24}
+              isRequired
+              granularity="minute"
+              onChange={(time) =>
+                setValue("workTime", `${time.hour}:${time.minute}`)
+              }
+            />
+          )}
+        />
+      </section>
+
+      <AccentButton text="Сохранить" />
     </form>
   );
 }

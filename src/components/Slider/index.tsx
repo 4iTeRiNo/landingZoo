@@ -2,17 +2,12 @@
 
 /* eslint-disable react/jsx-boolean-value */
 import Image from "next/image";
-import React, { Dispatch, SetStateAction, useState } from "react";
+import React, { useState, useRef } from "react";
 import { FreeMode, Navigation, Thumbs } from "swiper/modules";
-import { Swiper, SwiperSlide } from "swiper/react";
+import { Swiper, SwiperSlide, SwiperClass, SwiperRef } from "swiper/react";
 
 // Import Swiper styles
 import "swiper/css";
-import "swiper/css/free-mode";
-import "swiper/css/navigation";
-import "swiper/css/thumbs";
-
-// import required modules
 
 const MapImage = [
   { id: 1, path: "https://swiperjs.com/demos/images/nature-1.jpg", alr: "img" },
@@ -32,17 +27,15 @@ const MapImage = [
 ];
 
 const SliderAnimal = () => {
-  const [thumbsSwiper, setThumbsSwiper] = useState(null);
+  const [instance, setInstance] = useState<SwiperClass | null>(null);
+  const swiperElRef = useRef<SwiperRef>(null);
   return (
     <>
       <Swiper
-        style={{
-          "--swiper-navigation-color": "transparent",
-          "--swiper-pagination-color": "transparent",
-        }}
+        hashNavigation={{ replaceState: false, watchState: false }}
         spaceBetween={10}
         navigation={true}
-        thumbs={{ swiper: thumbsSwiper }}
+        thumbs={{ swiper: instance }}
         modules={[FreeMode, Navigation, Thumbs]}
         className="w-full relative"
       >
@@ -59,23 +52,24 @@ const SliderAnimal = () => {
         ))}
       </Swiper>
       <Swiper
-        onSwiper={setThumbsSwiper}
+        ref={swiperElRef}
+        onSwiper={setInstance}
         spaceBetween={10}
         slidesPerView={4}
         freeMode={true}
         watchSlidesProgress={true}
         modules={[FreeMode, Navigation, Thumbs]}
         style={{ overflow: "visible" }}
-        className="w-full mx-auto mt-3 relative h-1/4"
+        className="mx-auto mt-3"
       >
         {MapImage.map((img) => (
-          <SwiperSlide key={img.id} className="w-[161px] h-[200px] ">
+          <SwiperSlide key={img.id} className="">
             <Image
               width={161}
               height={93}
               src={img.path}
               alt={img.alr}
-              className="w-[161px] aspect-square "
+              className="w-screen aspect-auto"
             />
           </SwiperSlide>
         ))}

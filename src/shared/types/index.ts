@@ -24,7 +24,7 @@ type Contact = {
 export type SelectOptions = {
   id: number;
   value: string;
-  text: string;
+  label: string;
 };
 
 export type FieldValues = Record<FormRegister, string>;

@@ -18,7 +18,7 @@ const AccentButton = ({
       {...props}
       type="submit"
       className="z-[7] flex flex-row gap-x-[3.2vw] items-center w-full justify-center rounded-md border border-transparent bg-green-750 
-      px-8 py-3 text-base font-medium text-white hover:bg-green-700 
+      px-8 py-3 text-base font-medium text-white hover:bg-green-700 disabled:transparent
       focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2"
     >
       {text}
