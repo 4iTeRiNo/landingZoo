@@ -11,11 +11,18 @@
   },
   "dependencies": {
     "@internationalized/date": "^3.5.5",
+    "@pqina/pintura": "^8.83.2",
+    "filepond": "^4.31.2",
+    "filepond-plugin-image-exif-orientation": "^1.0.11",
+    "filepond-plugin-image-preview": "^4.6.12",
     "next": "14.2.5",
     "react": "^18",
     "react-dom": "^18",
+    "react-filepond": "^7.1.2",
     "react-hook-form": "^7.52.2",
+    "react-select": "^5.8.0",
     "rsuite": "^5.69.0",
+    "swiper": "^11.1.10",
     "tailwind-variants": "^0.2.1"
   },
   "devDependencies": {
