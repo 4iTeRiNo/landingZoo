@@ -26,30 +26,33 @@ export type SelectOptions = {
   value: string;
   label: string;
 };
-
-export type FieldValues = Record<FormRegister, string>;
+export type FormValues = {
+  name: string;
+  breed: string;
+  age: number;
+  gender: string;
+  weight: string;
+  features: string;
+  tel: number;
+  date: string;
+  time: string;
+};
 
 export enum FormRegister {
-  namePet = "namePet",
+  name = "name",
   breed = "breed",
   age = "age",
   gender = "gender",
   weight = "weight",
   features = "features",
-  phone = "phone",
-  date = "date",
+  tel = "tel",
 }
 
-export type FormValues = {
+export type FormProps = {
   id: number;
-  label: {
-    text: string;
-  };
-  input: {
-    register?: Partial<FormRegister>;
-    validate: RegExp;
-    required: string;
-    message: string;
-    type: string;
-  };
+  registerName: Partial<FormRegister>;
+  validate: RegExp;
+  message: string;
+  type: string;
+  placeholder: string;
 };

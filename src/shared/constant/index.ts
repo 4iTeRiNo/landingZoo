@@ -1,4 +1,5 @@
 import { Comments, Contacts, Faqs } from "../types";
+import { patternValue } from "./errorWord";
 
 export const mockComments: Comments = [
   {

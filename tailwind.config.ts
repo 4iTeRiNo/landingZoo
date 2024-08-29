@@ -58,11 +58,26 @@ const config: Config = {
             transition: "1s ease-in",
           },
         },
+        animateVisible: {
+          "0%": {
+            opacity: "0",
+            height: "0",
+          },
+          "70%": {
+            display: "none",
+            height: "10%",
+          },
+          "100%": {
+            opacity: "1",
+            height: "100%",
+          },
+        },
       },
       animation: {
         moveToLeft: "moveToLeft 0.5s ease forwards",
         moveToLeftLinks: "moveToLeftLinks 1.1s ease forwards",
         moveToTop: "moveToTop 0.5s ease-in-out forwards",
+        animateVisible: "animateVisible 1s ease forwards",
       },
       colors: {
         grey: {
