@@ -148,7 +148,7 @@ export default function App() {
       </label>
 
       <section className="flex flex-col w-full gap-y-4">
-        <section className="w-full flex justify-between">
+        <section className="w-full flex justify-between pr-3">
           <label
             htmlFor="gender"
             className={`${gender === "Пол" ? "text-stone-550" : "text-white"}`}

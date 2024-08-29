@@ -150,12 +150,10 @@ li:nth-child(5n)::marker {
   cursor: pointer;
   outline: none;
 }
+
 option {
   background-color: var(--indigo950);
   color: white;
-}
-option.important {
-  background-color: #ffcc00 !important;
 }
 
 .custom_select::before,

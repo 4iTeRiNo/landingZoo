@@ -5,8 +5,8 @@ import Toggle from "../ToggleLanding";
 const Header = () => {
   return (
     <div
-      className="flex-none flex flex-row gap-x-5 justify-between w-full z-10 pb-9 
-    px-[4.44vw] pt-[8.33vw]"
+      className="flex flex-row gap-x-5 justify-between w-full z-10 pb-9 
+    px-[4.44vw] pt-[8.33vw] bg-indigo-950"
     >
       <Image
         className="w-auto h-auto aspect-auto z-10"

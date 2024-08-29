@@ -6,7 +6,7 @@ import React from "react";
 
 export default function Animal() {
   return (
-    <main className="flex pt-[30px] flex-col bg-indigo-950 px-[15px] overflow-x-hidden">
+    <main className="flex flex-col bg-indigo-950 px-[15px] overflow-x-hidden">
       <section className="w-full">
         <SliderAnimal />
         <UpLoadForm />
