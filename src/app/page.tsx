@@ -9,6 +9,7 @@ import {
   mockFaqs,
 } from "@/shared/constant";
 import Image from "next/image";
+import Link from "next/link";
 
 const happyCat = "happy-cat.svg";
 
@@ -33,7 +34,15 @@ export default function Home() {
         </div>
         <Video className="absolute top-0 bottom-0 h-[667px] z-0 object-cover aspect-square" />
         <div className="flex w-full items-center flex-col z-5 flex-initial gap-y-4">
-          <AccentButton text="Создать личный кабинет" />
+          <Link
+            href="/animal"
+            className="z-[7] flex flex-row gap-x-[3.2vw] items-center w-full justify-center rounded-md border border-transparent bg-green-750 
+      px-8 py-3 text-base font-medium text-white hover:bg-green-700 disabled:transparent
+     focus:ring-2 hover:text-white hover:decoration-transparent 
+     active:decoration-transparent focus:ring-green-500 focus:ring-offset-2 active:text-white"
+          >
+            Зарегистрироваться
+          </Link>
           <p className="text-[12px] text-center z-[7] text-[#808080]">Войти</p>
         </div>
       </section>

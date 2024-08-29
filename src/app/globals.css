@@ -251,3 +251,13 @@ option.important {
   border-radius: 50%;
   background: white;
 }
+
+input[type="file"] {
+  opacity: 0;
+  top: -40px;
+  cursor: pointer;
+  width: 200px;
+  height: 30px;
+  font-size: 0;
+  position: absolute;
+}
