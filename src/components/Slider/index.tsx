@@ -55,21 +55,21 @@ const SliderAnimal = () => {
         ref={swiperElRef}
         onSwiper={setInstance}
         spaceBetween={10}
-        slidesPerView={4}
+        slidesPerView={2}
         freeMode={true}
-        watchSlidesProgress={true}
         modules={[FreeMode, Navigation, Thumbs]}
         style={{ overflow: "visible" }}
         className="mx-auto mt-3"
       >
         {MapImage.map((img) => (
-          <SwiperSlide key={img.id} className="">
+          <SwiperSlide key={img.id}>
             <Image
               width={161}
               height={93}
               src={img.path}
               alt={img.alr}
-              className="w-screen aspect-auto"
+              className="w-full object-cover"
+              style={{ height: "93px" }}
             />
           </SwiperSlide>
         ))}
