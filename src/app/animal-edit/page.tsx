@@ -1,5 +1,4 @@
 import Form from "@/components/Form";
-import Header from "@/components/Header";
 import SliderAnimal from "@/components/Slider";
 import UpLoadForm from "@/components/UpLoad/UpLoadForm";
 import React from "react";

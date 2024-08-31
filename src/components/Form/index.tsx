@@ -5,10 +5,10 @@
 import { Forms, Genders } from "@/shared/constant/formProps";
 import { FormValues, SelectOptions } from "@/shared/types";
 import { DatePicker, TimeInput } from "@nextui-org/react";
-import Image from "next/image";
 import React, { useEffect, useState } from "react";
 import { Controller, useForm } from "react-hook-form";
 import Title from "../TitleAccent";
+import Link from "next/link";
 
 export default function FormComponent() {
   const [gender, setGender] = useState("Пол");
@@ -23,7 +23,7 @@ export default function FormComponent() {
   } = useForm<FormValues>({ mode: "onChange" });
   // eslint-disable-next-line no-console
   const onSubmit = handleSubmit((data) => console.log(data));
-  const [isVisible, setIsVisible] = useState<boolean>(false);
+  // const [isVisible, setIsVisible] = useState<boolean>(false);
 
   const handleChange = (value: Date) => {
     setValue("date", value.toISOString());
@@ -69,7 +69,7 @@ export default function FormComponent() {
       })}
 
       <section className="flex flex-col w-full gap-y-4 px-[2.78vw]">
-        <section
+        {/*     <section
           className="w-full flex justify-between"
           onClick={() => setIsVisible(!isVisible)}
           aria-hidden="true"
@@ -89,11 +89,11 @@ export default function FormComponent() {
             height={12}
             alt="arrow"
           />
-        </section>
+        </section> */}
 
         <section
-          className={`w-full ${isVisible ? "animate-animateVisible " : "hidden"} delay-500 flex flex-col justify-around 
-        rounded-md bg-stone-850 px-3 py-3`}
+          className="w-full delay-500 flex flex-col justify-around 
+        rounded-md bg-stone-850 px-3 py-3"
         >
           <Title
             className="text-white pb-4"
@@ -159,15 +159,17 @@ export default function FormComponent() {
         </div>
       </section>
 
-      <button
-        disabled={Object.keys(errors).length > 0}
+      <Link
+        // disabled={Object.keys(errors).length > 0}
+        href={"/animal-info"}
+        // onClick={() => redirect("/animal-info")}
         className={`z-[7] flex flex-row gap-x-[3.2vw] items-center w-full justify-center rounded-md border border-transparent bg-green-750 
       px-8 py-3 text-base font-medium text-white hover:bg-green-700 disabled:transparent
       focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2
       ${Object.keys(errors).length > 0 && "opacity-50"}`}
       >
         Сохранить
-      </button>
+      </Link>
     </form>
   );
 }
