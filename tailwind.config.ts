@@ -1,5 +1,6 @@
-import { nextui } from "@nextui-org/theme";
 import type { Config } from "tailwindcss";
+// eslint-disable-next-line import/no-extraneous-dependencies
+import { nextui } from "@nextui-org/theme";
 
 const config: Config = {
   content: [
@@ -18,11 +19,12 @@ const config: Config = {
         xl: "1440px",
         "2xl": "1920px",
       },
-      hover: {
-        orange150:
-          "linear-gradient(90deg, var(--orange50) 0%, var(--orange100) 100%)",
-        orange300:
-          "linear-gradient(90deg, var(--orange50) 0%, var(--orange100) 100%)",
+      hover: {},
+      animation: {
+        moveToLeft: "moveToLeft 0.5s ease forwards",
+        moveToLeftLinks: "moveToLeftLinks 1.1s ease forwards",
+        animateVisible: "animateVisible 1s ease forwards",
+        loaderDown: "loaderDown 4s alternate",
       },
       keyframes: {
         moveToLeft: {
@@ -53,11 +55,6 @@ const config: Config = {
             opacity: "1",
           },
         },
-        animationDuration: {
-          "0%, 100%": {
-            transition: "1s ease-in",
-          },
-        },
         animateVisible: {
           "0%": {
             opacity: "0",
@@ -72,48 +69,40 @@ const config: Config = {
             height: "100%",
           },
         },
-      },
-      animation: {
-        moveToLeft: "moveToLeft 0.5s ease forwards",
-        moveToLeftLinks: "moveToLeftLinks 1.1s ease forwards",
-        moveToTop: "moveToTop 0.5s ease-in-out forwards",
-        animateVisible: "animateVisible 1s ease forwards",
+        loaderDown: {
+          "0%": {
+            transform: "translateY(-80px)",
+          },
+          "50%": {
+            transform: "translateY(0px)",
+          },
+          "100%": {
+            transform: "translateY(-80px)",
+          },
+        },
       },
       colors: {
-        grey: {
-          200: "var(--grey200)",
-          600: "var(--grey600)",
-        },
-        stone: {
-          550: "var(--stone550)",
-          650: "var(--stone650)",
-          750: "var(--stone750)",
-          850: "var(--stone850)",
-          890: "var(--stone890)",
-          950: "var(--stone950)",
-        },
+        white: "var(--white)",
         black: "var(--black)",
-        green: {
-          750: "var(--green750)",
-        },
-        indigo: {
-          950: "var(--indigo950)",
-        },
-        orange: {
-          50: "var(--orange50)",
-          100: "var(--orange100)",
-          150: "var(--orange150)",
-          200: "var(--orange200)",
-          400: "var(--orange300)",
-          500: "var(--orange500)",
-          600: "var(--orange600)",
-        },
+        accentColor: "var(--purple850)",
+        bgStone750: "var(--stone750)",
+        greyText: "var(--text-color-grey)",
+        borderColor: "var(--border-b-color)",
+      },
+      borderRadius: {
+        DEFAULT: "var(--border-radius)",
+        full: "100%",
+      },
+      fontFamily: {
+        inter: "var(--font-family)",
+        roboto: "var(--second-font)",
+        montserrat: "var(--third-font)",
+      },
+      backgroundColor: {
+        bgColor: "var(--backgroundColor)",
       },
       backgroundImage: {
-        "main-gradient-orange-linear":
-          "linear-gradient(180deg, var(--orange200) 0%, var(--orange500) 100%)",
-        "btn-gradient-orange-normal":
-          "linear-gradient(90deg, var(--orange200) 0%, var(--orange400) 100%)",
+        "accent-gradient": "var(--purple-gradient)",
       },
     },
   },

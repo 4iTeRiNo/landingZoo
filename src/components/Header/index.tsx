@@ -1,22 +1,16 @@
-import Image from "next/image";
 import HamburgerMenu from "../HamburgerMenu";
-import Toggle from "../ToggleLanding";
 
 const Header = () => {
   return (
     <div
-      className="flex flex-row gap-x-5 justify-between w-full z-10 pb-9 
-    px-[4.44vw] pt-[8.33vw] bg-indigo-950"
+      className="flex flex-row gap-x-5 justify-between  w-full z-10
+    px-[4.44vw] py-[8.33vw] bg-bgColor"
     >
-      <Image
-        className="w-auto h-auto aspect-auto z-10"
-        src="logo.svg"
-        alt="logo"
-        width={161}
-        height={43}
-      />
-      <div className="flex-none flex flex-row items-center justify-between w-2/5 z-10 ">
-        <Toggle />
+      <h1 className="font-montserrat flex flex-row items-end gap-x-1 text-3xl font-extrabold z-10 text-white">
+        ZooRama
+        <p className="relative z-10 text-white text-xs font-normal">Бизнес</p>
+      </h1>
+      <div className="flex-none flex flex-row items-center justify-end w-2/5 z-10 ">
         <HamburgerMenu />
       </div>
     </div>

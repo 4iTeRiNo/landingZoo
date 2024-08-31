@@ -1,193 +1,56 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-@import "rsuite/dist/rsuite.css";
 
 body {
   box-sizing: border-box;
-  font-size: 16px;
-  --swiper-navigation-color: transparent;
-  --swiper-pagination-color: transparent;
-  --grey200: #eeee;
-  --grey600: #666666;
-  --stone550: #808080;
-  --stone650: #888;
-  --stone750: #373737;
-  --stone890: #2f2f2f;
-  --stone850: #262626;
-  --stone950: #232323;
+  --white: #fff;
   --black: #000;
-  --indigo950: #0f0a21;
-  --b800: #171615;
-  --green750: #0a9600;
-  --orange50: #ffdc97;
-  --orange100: #ffbd3e;
-  --orange150: #ffbe41;
-  --orange200: #fcbf49;
-  --orange250: #ffa800;
-  --orange400: #ff9000;
-  --orange500: #ff7d34;
-  --orange600: #fc6a00;
+  --stone750: #262626;
+  --grey550: #a2a2a2;
+  --stone850: #232323;
+  --purple850: #6432ab;
+  --purple-gradient: linear-gradient(131deg, #7b38da 0%, #5c06d4 100%);
+  --border-b-color: #373737;
+  --backgroundColor: var(--stone850);
+  --accent-color: var(--purple-gradient);
+  --text-color-grey: var(--grey550);
+  --border-radius: 100px;
+  -font-family: "Inter", sans-serif;
+  --second-family: "Roboto", sans-serif;
+  --third-family: "Montserrat", sans-serif;
+  font-family: var(--second-family);
 }
 
-@layer utilities {
-  details > summary::marker {
-    display: none !important;
-  }
-
-  summary::-webkit-details-marker {
-    /* Hides marker on Safari */
-    display: none;
-  }
-
-  summary {
-    cursor: pointer;
-    display: flex;
-    justify-content: space-between;
-    padding-right: 15px;
-    align-items: center;
-    transition: 1s transform ease;
-  }
-
-  @keyframes openDetails {
-    0% {
-      height: 0;
-      opacity: 0;
-    }
-    100% {
-      height: fit-content;
-      opacity: 1;
-    }
-  }
-
-  details[open] > p {
-    animation: openDetails 0.5s ease forwards;
-  }
-
-  details > summary::after {
-    content: url("/arrow-faq.svg");
-    position: relative;
-    display: inline-block;
-    width: 12px;
-    height: 14px;
-    transition: 0.3s transform ease;
-    transform: rotate(-90deg);
-  }
-
-  details[open] > summary::after {
-    align-items: end;
-    width: 12px;
-    height: 10px;
-    bottom: -10px;
-    transform: rotate(-180deg);
-    transition: 0.3s transform ease;
-  }
+/* переопределение цвета пагинации */
+.swiper-pagination .swiper-pagination-bullet-active {
+  background: var(--white);
 }
 
-li:nth-child(5n)::marker {
-  color: transparent;
+/* input autofill, убираем фон у автозаполнения*/
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+  -webkit-box-shadow: 0 0 0 30px transparent inset !important;
+  -webkit-text-fill-color: white;
+  -webkit-border-image: none;
+  transition: background-color 5000s ease-in-out 0s;
+  -webkit-background-clip: text;
+}
+/* убрать стрелки для input number */
+input[type="number"] {
+  -moz-appearance: textfield;
 }
 
-/* Toggle Switch */
-.toggle_button {
-  position: relative;
-  display: inline-block;
-  width: auto;
-  width: 30px;
-  height: 15px;
-  margin: 0;
-  vertical-align: top;
-  background-color: transparent;
-  border: 1px solid #fff;
-  border-radius: 50px;
-  outline: none;
-  cursor: pointer;
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  appearance: none;
-}
-.toggle_button::after {
-  content: "";
-
-  display: inline-block;
-  position: absolute;
-  left: 3px;
-  top: 24%;
-
-  width: 7px;
-  height: 7px;
-  background-color: white;
-  border-radius: 50%;
-
-  transform: translateX(0);
-  transition: 0.3s;
-}
-.toggle_button:checked::after {
-  transform: translateX(calc(100% + 9px));
-  background-color: #fff;
-}
-.toggle_button:checked {
-  background-color: transparent;
-  transition: all 0.3s cubic-bezier(0.2, 0.85, 0.32, 1.2);
-}
-
-/* Custom Select */
-
-.custom_select {
-  min-width: 350px;
-  position: relative;
-}
-
-.custom_select select {
-  appearance: none;
-  width: 100%;
-  font-size: 16px;
-  padding-left: 10px;
-  padding-bottom: 10px;
-  background-color: transparent;
-  border-bottom: 1px solid var(--stone750);
-  color: white;
-  cursor: pointer;
-  outline: none;
-}
-
-option {
-  background-color: var(--indigo950);
-  color: white;
-}
-
-.custom_select::before,
-.custom_select::after {
-  --size: 0.3rem;
-  content: "";
-  position: absolute;
-  background-color: transparent;
-  right: 1rem;
-  pointer-events: none;
-}
-
-.custom_select::before {
-  border-left: solid transparent;
-  border-right: solid transparent;
-  border-bottom: 4px solid var(--stone650);
-  top: 40%;
-}
-
-.custom_select::after {
-  border-left: solid transparent;
-  border-right: solid transparent;
-  border-top: 4px solid var(--stone650);
-  top: 55%;
-}
-
-/* The container */
+/* Стили кастомного чекбокса */
 .container {
   display: flex;
   flex-direction: row;
   align-items: center;
   position: relative;
   cursor: pointer;
-  font-size: 22px;
+  font-size: 14px;
   padding-top: 2.4vw;
   -webkit-user-select: none;
   -moz-user-select: none;
@@ -222,7 +85,6 @@ option {
   background-color: #ccc;
 }
 
-/* When the radio button is checked, add a blue background */
 .container input:checked ~ .checkmark {
   background-color: transparent;
   border: 1px solid white;

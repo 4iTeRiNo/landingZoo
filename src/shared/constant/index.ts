@@ -1,5 +1,21 @@
+import {
+  FacebookIcon,
+  XTwitterICon,
+  InstagramIcon,
+  MessageICon,
+  LocationICon,
+  CallICon,
+  PhoneIcon,
+  RegistrationIcon,
+  PuppyIcon,
+  CLockIcon,
+  HomeIcon,
+  PeopleIcon,
+  ContactsIcon,
+  SettingIcon,
+  PaintIcon,
+} from "@/shared/svg";
 import { Comments, Contacts, Faqs } from "../types";
-import { patternValue } from "./errorWord";
 
 export const mockComments: Comments = [
   {
@@ -40,15 +56,17 @@ export const mockFaqs: Faqs = [
 ];
 
 export const mockContacts: Contacts = [
-  { id: 1, title: "Email", contact: "info@yourapp.com" },
+  { id: 1, title: "Email", icon: MessageICon, contact: "info@yourapp.com" },
   {
     id: 2,
     title: "Телефон",
+    icon: CallICon,
     contact: "+7 (999) 999-99-99",
   },
   {
     id: 3,
     title: "Адрес",
+    icon: LocationICon,
     contact: "г. Москва, ул. Ленина 1",
   },
 ];
@@ -57,44 +75,44 @@ export const navigateLinks = [
   {
     id: 1,
     text: "Главная",
-    link: "/",
+    href: "/",
+    icon: HomeIcon,
   },
   {
     id: 2,
     text: "О нас",
-    link: "/about",
+    href: "/about",
+    icon: PeopleIcon,
   },
   {
     id: 3,
     text: "Функции",
-    link: "/functions",
+    href: "/functions",
+    icon: SettingIcon,
   },
   {
     id: 4,
     text: "Отзывы",
-    link: "/feedback",
+    href: "/feedback",
+    icon: PaintIcon,
   },
   {
     id: 5,
     text: "Контакты",
-    link: "/contacts",
-  },
-  {
-    id: 6,
-    text: "Зарегистрироваться",
-    link: "/registration",
+    href: "/contacts",
+    icon: ContactsIcon,
   },
 ];
 
 export const mockSocial = [
-  { id: 1, text: "twitter icon", image: "/x-twitter.svg" },
-  { id: 2, text: "facebook icon", image: "/facebook.svg" },
-  { id: 3, text: "instagram icon", image: "/instagram_dark.svg" },
+  { id: 1, text: "twitter icon", image: XTwitterICon, href: "#" },
+  { id: 2, text: "facebook icon", image: FacebookIcon, href: "#" },
+  { id: 3, text: "instagram icon", image: InstagramIcon, href: "#" },
 ];
 
 export const detailsSteps = [
-  { id: 1, text: "Перейти в приложение" },
-  { id: 2, text: "Зарегистрироваться" },
-  { id: 3, text: "Добавить животное" },
-  { id: 4, text: "Добавить время работы" },
+  { id: 1, text: "Перейти в приложение", href: "#", icon: PhoneIcon },
+  { id: 2, text: "Зарегистрироваться", href: "#", icon: RegistrationIcon },
+  { id: 3, text: "Добавить животное", href: "#", icon: PuppyIcon },
+  { id: 4, text: "Добавить время работы", href: "#", icon: CLockIcon },
 ];

@@ -125,6 +125,8 @@ const forbiddenPattern = forbiddenWords
   .join("|")
   .toLocaleLowerCase();
 
-export const patternValue = new RegExp(
+const patternValue = new RegExp(
   `^(?!.*(?:${forbiddenPattern})).*[a-zA-Zа-яА-ЯёЁ\\s]+$`
 );
+
+export default patternValue;

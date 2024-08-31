@@ -19,6 +19,7 @@ type Contact = {
   id: number;
   title: string;
   contact: string;
+  icon: string;
 };
 
 export type SelectOptions = {
@@ -26,6 +27,7 @@ export type SelectOptions = {
   value: string;
   label: string;
 };
+
 export type FormValues = {
   name: string;
   breed: string;
@@ -33,9 +35,10 @@ export type FormValues = {
   gender: string;
   weight: string;
   features: string;
-  tel: number;
+  tel: string;
   date: string;
   time: string;
+  file: string[] | string;
 };
 
 export enum FormRegister {

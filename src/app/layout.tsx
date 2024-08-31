@@ -1,12 +1,12 @@
-import Footer from "@/components/Footer";
 import type { Metadata } from "next";
-import Header from "@/components/Header";
-import { nunito, openSans, roboto, montserrat } from "./fonts";
 import "./globals.css";
+import Header from "@/components/Header";
+import Footer from "@/components/Footer";
+import { inter, openSans, roboto } from "./fonts";
 
 export const metadata: Metadata = {
   title: "ZooRama",
-  description: " Найди друга и стань счастливым",
+  description: "Найди друга и стань счастливым",
 };
 
 export default function RootLayout({
@@ -15,10 +15,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html lang="ru" suppressHydrationWarning>
       <body
-        className={`${nunito.variable} ${openSans.variable} 
-      ${roboto.variable} ${montserrat}`}
+        className={`${inter.variable} ${openSans.variable} 
+      ${roboto.variable}`}
       >
         <Header />
         {children}

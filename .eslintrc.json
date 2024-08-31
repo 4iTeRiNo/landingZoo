@@ -23,7 +23,7 @@
     "no-shadow": "off",
     "arrow-body-style": "off",
     "import/extensions": "off",
-    "curly":"off",
+    "curly": "off",
     "react/button-has-type": "off",
     "react/react-in-jsx-scope": "off",
     "react/jsx-filename-extension": "off",

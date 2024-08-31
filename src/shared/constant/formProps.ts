@@ -1,5 +1,5 @@
 import { FormProps, FormRegister, SelectOptions } from "../types";
-import { patternValue } from "./errorWord";
+import patternValue from "./errorWord";
 
 enum GenderEnum {
   female = "female",
@@ -41,14 +41,6 @@ export const Forms: FormProps[] = [
   },
   {
     id: 5,
-    placeholder: "Номер телефона",
-    type: "tel",
-    registerName: FormRegister.tel,
-    validate: /^(\+7|8)\d{10}$/,
-    message: "Поле не может быть пустым",
-  },
-  {
-    id: 6,
     placeholder: "Особые приметы или аллергии",
     type: "text",
     registerName: FormRegister.features,
