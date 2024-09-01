@@ -116,3 +116,37 @@ export const detailsSteps = [
   { id: 3, text: "Добавить животное", href: "#", icon: PuppyIcon },
   { id: 4, text: "Добавить время работы", href: "#", icon: CLockIcon },
 ];
+
+export const days = [
+  {
+    id: 1,
+    key: "понеделник",
+    label: "Пн",
+  },
+  {
+    id: 2,
+    key: "вторник",
+    label: "Вт",
+  },
+  { id: 3, key: "среда", label: "Ср" },
+  {
+    id: 4,
+    key: "четверг",
+    label: "Чт",
+  },
+  {
+    id: 5,
+    key: "пятница",
+    label: "Пт",
+  },
+  {
+    id: 6,
+    key: "суббота",
+    label: "Сб",
+  },
+  {
+    id: 7,
+    key: "воскресенье",
+    label: "Вс",
+  },
+];

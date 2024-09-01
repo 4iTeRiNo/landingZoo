@@ -1,20 +1,17 @@
 "use client";
 
-/* eslint-disable react/jsx-props-no-spreading */
-
 import { Forms, Genders } from "@/shared/constant/formProps";
-import { FormValues } from "@/shared/types";
-import { DatePicker, TimeInput } from "@nextui-org/react";
+import { FormValues, key } from "@/shared/types";
+import convertPhoneNumber from "@/shared/utils";
+import { TimeInput } from "@nextui-org/react";
+// import { useRouter } from "next/navigation";
+import { ClockCircleIcon } from "@/shared/svg";
 import React, { useEffect, useState } from "react";
 import { Controller, useForm } from "react-hook-form";
-// import Link from "next/link";
-import { convertPhoneNumber, handleChange } from "@/shared/utils";
-import { useRouter } from "next/navigation";
 import AccentButton from "../ButtonAccent";
-import Title from "../TitleAccent";
 import Loader from "../Loader";
-// import { redirect } from "next/navigation";
-// import { navigate } from "@/shared/utils/redirectFn";
+import Title from "../TitleAccent";
+import Weekdays from "./Weekday";
 
 export default function FormComponent() {
   const {
@@ -25,39 +22,39 @@ export default function FormComponent() {
     setValue,
     reset,
   } = useForm<FormValues>({ mode: "onChange" });
-  // eslint-disable-next-line no-console
   const [isShowLoader, setIsShowLoader] = useState(false);
-  const router = useRouter();
+
+  // const router = useRouter();
 
   const onSubmit = async (data: FormValues) => {
-    // фейковая отправка данных
-    try {
-      const response = await fetch(
-        "https://jsonplaceholder.typicode.com/posts",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(data),
-        }
-      );
-      const result = await response.json();
-      // console.log("Успех:", result);
-      setIsShowLoader(true);
-      await new Promise((resolve) => {
-        setTimeout(resolve, 3000);
-      }); // Simulate 5000;
+    console.log(data);
+
+    const formData = new FormData();
+    setIsShowLoader(true);
+
+    formData.append("access_key", "b301e687-af2a-43b5-8bea-5ca49d0bc77f");
+
+    // for (const key in data) {
+    //   if (key === "file") formData.append(key, data[key][0]);
+    //   formData.append(key, data[key as key]);
+    // }
+
+    // const res = await fetch("https://api.web3forms.com/submit", {
+    //   method: "POST",
+    //   body: formData,
+    // })
+    //   .then((res) => res.json())
+    //   .finally(() => setIsShowLoader(false));
+
+    // if (res.success) {
+    //   console.log("Success", res);
+    // } else {
+    //   console.log("Error", res);
+    // }
+    setTimeout(() => {
       setIsShowLoader(false);
-      router.push("/");
-    } catch (error) {
-      // console.error("Ошибка:", error);
-    }
+    }, 4000);
   };
-
-  // const onSubmit = handleSubmit((data) => console.log(data));
-
-  // фейковая отправка данных
 
   useEffect(() => {
     reset();
@@ -84,7 +81,7 @@ export default function FormComponent() {
             name="file"
             multiple
             size={30720}
-            accept="image/*"
+            accept="image/png, image/jpeg"
             className=" z-10 relative hover:cursor-pointer [type=file:opacity-0]"
           />
         </label>
@@ -95,25 +92,26 @@ export default function FormComponent() {
           <label
             key={form.id}
             htmlFor={form.registerName}
-            className={`w-full border-b-[1px] leading-6 border-borderColor `}
+            className={`w-full border-b-[1px] leading-6 ${errors[form.registerName] ? "border-red-400" : "border-borderColor"}`}
           >
             <input
               {...register(form.registerName, {
-                // required: true,
+                required: form.message,
                 pattern: {
                   value: form.validate,
-                  message: form.message,
+                  message: "Введине корректные данные",
                 },
               })}
               id={form.registerName}
+              autoComplete="off"
               placeholder={form.placeholder}
               type={form.type}
               className={`bg-transparent w-full text-white pl-[10px] text-sm placeholder:text-base 
-                focus-visible:outline-none h-[35px] ${errors && "error"} appearance-none`}
+                focus-visible:outline-none h-[35px] appearance-none`}
             />
             {form.validate && errors[form.registerName] && (
-              <span className="text-[12px] text-red-400">
-                {`${form?.message}`}
+              <span className="text-[12px] text-errorMessage">
+                {`${errors[form.registerName]?.message}`}
               </span>
             )}
           </label>
@@ -137,7 +135,7 @@ export default function FormComponent() {
               rules={{ required: "Выбирите пожалуйста пол питомца" }}
               render={({ field }) => (
                 <label
-                  className="container border-b-1 border-borderColor pb-4 last:border-none"
+                  className={`container border-b-1 ${errors.gender ? "border-errorMessage" : "border-borderColor"} pb-4 last:border-none`}
                   htmlFor="gender"
                 >
                   <input
@@ -153,6 +151,9 @@ export default function FormComponent() {
               )}
             />
           ))}
+          {errors.gender && (
+            <span className="text-[12px] text-errorMessage">Выбирите пол</span>
+          )}
         </section>
       </section>
 
@@ -161,11 +162,16 @@ export default function FormComponent() {
           <Title className="text-white" text="Контакты" />
           <label
             htmlFor="tel"
-            className={`w-full border-b-[1px] leading-6 border-borderColor `}
+            className={`w-full border-b-[1px] leading-6 ${errors.tel ? "border-errorMessage" : "border-borderColor"}`}
           >
             <input
               {...register("tel", {
-                required: true,
+                required: { value: true, message: "введите корректные данные" },
+                pattern: {
+                  // @ts-ignore
+                  value: /^\8 \(\d{3}\) \d{3}-\d{2}-\d{2}$/,
+                  message: "Введите корректное значение",
+                },
               })}
               id="tel"
               placeholder="Рабочий номер телефона"
@@ -174,37 +180,50 @@ export default function FormComponent() {
                 setValue("tel", convertPhoneNumber(e.target.value))
               }
               className={`bg-transparent w-full text-white pl-[10px] text-sm placeholder:text-base 
-                focus-visible:outline-none h-[35px] ${errors && "error"}`}
+                focus-visible:outline-none h-[35px]`}
             />
+            {errors.tel && (
+              <span className="text-[12px] text-errorMessage">
+                {`${errors?.tel?.message}`}
+              </span>
+            )}
           </label>
           <Controller
-            name="date"
+            name="days"
             control={control}
-            render={() => (
-              <DatePicker
-                label="Дата"
-                className="w-full pt-3 "
-                isRequired
-                onChange={(date) =>
-                  handleChange(date.toDate("Europe/Moscow"), setValue)
-                }
-                validationBehavior="aria"
-              />
-            )}
+            rules={{ required: "Укажите рабочие дни" }}
+            render={() => <Weekdays setValue={setValue} />}
           />
           <Controller
             name="time"
             control={control}
-            render={() => (
-              <TimeInput
-                label="Время"
-                hourCycle={24}
-                isRequired
-                granularity="minute"
-                onChange={(time) =>
-                  setValue("time", `${time.hour}:${time.minute}`)
-                }
-              />
+            render={({ field: { value } }) => (
+              <section className="flex flex-row gap-x-5">
+                <TimeInput
+                  label="Начало рабочего дня"
+                  hourCycle={24}
+                  id="time1"
+                  granularity="minute"
+                  endContent={
+                    <ClockCircleIcon className="text-xl  pointer-events-none flex-shrink-0" />
+                  }
+                  onChange={(time) =>
+                    setValue("time.timeStart", `${time.hour}:${time.minute}`)
+                  }
+                />
+                <TimeInput
+                  label="Конец рабочего дня"
+                  hourCycle={24}
+                  id="time"
+                  granularity="minute"
+                  endContent={
+                    <ClockCircleIcon className="text-xl text-default-400 pointer-events-none flex-shrink-0" />
+                  }
+                  onChange={(time) =>
+                    setValue("time.timeEnd", `${time.hour}:${time.minute}`)
+                  }
+                />
+              </section>
             )}
           />
         </div>

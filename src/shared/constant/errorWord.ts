@@ -89,6 +89,7 @@ const forbiddenWords = [
   "педр",
   "пидр",
   "сука",
+  "Cука",
   "суки",
   "хача",
   "хаче",
@@ -123,7 +124,7 @@ const forbiddenWords = [
 const forbiddenPattern = forbiddenWords
   .map((word) => `(?:${word})`)
   .join("|")
-  .toLocaleLowerCase();
+  .toLowerCase();
 
 const patternValue = new RegExp(
   `^(?!.*(?:${forbiddenPattern})).*[a-zA-Zа-яА-ЯёЁ\\s]+$`

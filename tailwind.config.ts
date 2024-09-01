@@ -88,6 +88,7 @@ const config: Config = {
         bgStone750: "var(--stone750)",
         greyText: "var(--text-color-grey)",
         borderColor: "var(--border-b-color)",
+        errorMessage: "var(--error-color-message)",
       },
       borderRadius: {
         DEFAULT: "var(--border-radius)",

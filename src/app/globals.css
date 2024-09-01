@@ -12,6 +12,7 @@ body {
   --purple850: #6432ab;
   --purple-gradient: linear-gradient(131deg, #7b38da 0%, #5c06d4 100%);
   --border-b-color: #373737;
+  --error-color-message: #f31259;
   --backgroundColor: var(--stone850);
   --accent-color: var(--purple-gradient);
   --text-color-grey: var(--grey550);
@@ -20,6 +21,7 @@ body {
   --second-family: "Roboto", sans-serif;
   --third-family: "Montserrat", sans-serif;
   font-family: var(--second-family);
+  caret-color: white;
 }
 
 /* переопределение цвета пагинации */

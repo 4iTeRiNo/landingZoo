@@ -28,17 +28,22 @@ export type SelectOptions = {
   label: string;
 };
 
+export type key = keyof FormValues;
+
 export type FormValues = {
   name: string;
   breed: string;
-  age: number;
+  age: string;
   gender: string;
   weight: string;
   features: string;
   tel: string;
-  date: string;
-  time: string;
-  file: string[] | string;
+  days: string;
+  time: {
+    timeStart: string;
+    timeEnd: string;
+  };
+  file: string;
 };
 
 export enum FormRegister {

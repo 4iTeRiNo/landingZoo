@@ -2,8 +2,8 @@ import { FormProps, FormRegister, SelectOptions } from "../types";
 import patternValue from "./errorWord";
 
 enum GenderEnum {
-  female = "female",
-  male = "male",
+  female = "девочка",
+  male = "мальчик",
 }
 
 export const Forms: FormProps[] = [
