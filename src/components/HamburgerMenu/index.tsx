@@ -5,7 +5,7 @@ import { useState } from "react";
 import useOutsideClick from "@/shared/hooks/useOutSideClick";
 import Link from "next/link";
 import Title from "../TitleAccent";
-import AccentButton from "../ButtonAccent";
+import ButtonAsLink from "../CustomLink";
 
 const HamburgerMenu = () => {
   const [isNavOpen, setIsNavOpen] = useState(false);
@@ -62,7 +62,7 @@ const HamburgerMenu = () => {
               ))}
             </div>
             <section className="flex flex-col animate-[moveToLeftLinks_1.5s] gap-y-3 justify-center text-center">
-              <AccentButton text="Зарегистрироваться" />
+              <ButtonAsLink text="Зарегистрироваться" />
               <Link href="/client" className="text-xs text-greyText">
                 Перейти в ZooRama клиент
               </Link>

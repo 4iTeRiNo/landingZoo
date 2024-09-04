@@ -1,6 +1,4 @@
 import { isValidPhoneNumber, parsePhoneNumber } from "libphonenumber-js";
-import { UseFormSetValue } from "react-hook-form";
-import { FormValues } from "../types";
 
 const convertPhoneNumber = (inp: string) => {
   if (isValidPhoneNumber(inp, "RU")) {

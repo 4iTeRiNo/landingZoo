@@ -46,6 +46,6 @@
     "react/jsx-one-expression-per-line": "off", // let it handle by prettier
     "no-use-before-define": "off", // let it handle by TypeScript
     "guard-for-in": "warn",
-    "react/jsx-props-no-spreading": "off"
+    "react/jsx-props-no-spreading": "warn"
   }
 }

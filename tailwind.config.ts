@@ -24,7 +24,7 @@ const config: Config = {
         moveToLeft: "moveToLeft 0.5s ease forwards",
         moveToLeftLinks: "moveToLeftLinks 1.1s ease forwards",
         animateVisible: "animateVisible 1s ease forwards",
-        loaderDown: "loaderDown 4s alternate",
+        loaderDown: "loaderDown ease 5s alternate",
       },
       keyframes: {
         moveToLeft: {

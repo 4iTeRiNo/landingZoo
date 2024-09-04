@@ -21,3 +21,4 @@ export { default as LocationICon } from "@/assets/svg/location-icon.svg";
 export { default as LineStepIcon } from "@/assets/svg/line-step.svg";
 export { default as CheckIcon } from "@/assets/svg/check-icon.svg";
 export { default as ClockCircleIcon } from "@/assets/svg/clock-circle.svg";
+export { default as WarningIcon } from "@/assets/svg/warning-icon.svg";

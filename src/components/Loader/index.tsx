@@ -1,15 +1,21 @@
-import React from "react";
+import { useState } from "react";
 import { Button } from "@nextui-org/react";
-import { CheckIcon } from "@/shared/svg";
+import { CheckIcon, WarningIcon } from "@/shared/svg";
+import { ErrorKeyMessage } from "@/shared/types";
 
-const Loader = () => {
-  const [isLoading, setIsLoading] = React.useState(true);
+const Loader = ({ isShowResult }: { isShowResult: ErrorKeyMessage }) => {
+  const [isLoading, setIsLoading] = useState(true);
+  const messageResult = new Map<ErrorKeyMessage, string>([
+    ["success", "Готово"],
+    ["error", "Извините произошла ошибка, попробуйте еще раз"],
+    ["warning", "Заполните обязательные поля"],
+  ]);
   setTimeout(() => {
     setIsLoading(false);
   }, 1500);
   return (
     <Button
-      className="flex fixed z-[11] w-fit top-5 bg-accent-gradient items-center p-3 text-white rounded animate-loaderDown"
+      className="flex fixed z-[11] w-fit top-5 bg-accent-gradient items-center p-3 text-balance text-white rounded animate-loaderDown"
       isLoading={isLoading}
       spinner={
         isLoading && (
@@ -35,9 +41,19 @@ const Loader = () => {
           </svg>
         )
       }
-      startContent={!isLoading && <CheckIcon className="relative top-1" />}
+      startContent={
+        (!isLoading && isShowResult === "success" && (
+          <CheckIcon className="relative top-1" />
+        )) ||
+        (!isLoading && isShowResult === "error" && (
+          <WarningIcon className="relative fill-errorMessage" />
+        )) ||
+        (!isLoading && isShowResult === "warning" && (
+          <WarningIcon className="relative  fill-yellow-500 " />
+        ))
+      }
     >
-      {isLoading ? "Загрузка..." : "Готово"}
+      {isLoading ? "Загрузка..." : messageResult.get(isShowResult)}
     </Button>
   );
 };
