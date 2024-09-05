@@ -11,7 +11,7 @@ export const Forms: FormProps[] = [
     id: 1,
     placeholder: "Имя",
     type: "text",
-    register_name: FormRegister.name,
+    registerName: FormRegister.name,
     validate: patternValue,
     message: "Поле не может быть пустым",
   },
@@ -19,7 +19,7 @@ export const Forms: FormProps[] = [
     id: 2,
     placeholder: "Порода",
     type: "text",
-    register_name: FormRegister.breed,
+    registerName: FormRegister.breed,
     validate: patternValue,
     message: "Поле не может быть пустым",
   },
@@ -27,7 +27,7 @@ export const Forms: FormProps[] = [
     id: 3,
     placeholder: "Возвраст",
     type: "number",
-    register_name: FormRegister.age,
+    registerName: FormRegister.age,
     validate: /^([1-9]{1,2}){1}(\.[0-9]{1,2})?$/,
     message: "Поле не может быть пустым",
   },
@@ -35,7 +35,7 @@ export const Forms: FormProps[] = [
     id: 4,
     placeholder: "Вес",
     type: "number",
-    register_name: FormRegister.weight,
+    registerName: FormRegister.weight,
     validate: /^([1-9]{1,2}){1}(\.[0-9]{1,2})?$/,
     message: "Поле не может быть пустым",
   },
@@ -43,7 +43,7 @@ export const Forms: FormProps[] = [
     id: 5,
     placeholder: "Особые приметы или аллергии",
     type: "text",
-    register_name: FormRegister.features,
+    registerName: FormRegister.features,
     validate: patternValue,
     message: "Поле не может быть пустым",
   },
@@ -62,4 +62,4 @@ export const Genders: SelectOptions[] = [
   },
 ];
 
-export const patternValueOfNumber = /^(8|\+7) \(\d{3}\) \d{3}-\d{2}-\d{2}$/;
+export const patternValueOfNumber = /^8 \(\d{3}\) \d{3}-\d{2}-\d{2}$/;

@@ -15,7 +15,7 @@ const Loader = ({ isShowResult }: { isShowResult: ErrorKeyMessage }) => {
   }, 1500);
   return (
     <Button
-      className="flex fixed z-[11] w-fit top-5 bg-accent-gradient items-center p-3 text-balance text-white rounded animate-loaderDown"
+      className="flex fixed z-[11] w-fit top-5 bg-accent-gradient items-center p-3 text-white rounded animate-loaderDown"
       isLoading={isLoading}
       spinner={
         isLoading && (

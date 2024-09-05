@@ -1,9 +1,9 @@
-import ButtonAsLink from "@/components/CustomLink";
+import AccentButton from "@/components/ButtonAccent";
 import SliderFedBack from "@/components/Slider/SliderFedBack";
 import Title from "@/components/TitleAccent";
 import Video from "@/components/Video/Video";
 import { detailsSteps, mockContacts, mockFaqs } from "@/shared/constant";
-import { LineStepIcon } from "@/shared/svg";
+import { ArrowForButtonIcon, LineStepIcon } from "@/shared/svg";
 
 export default function Home() {
   return (
@@ -24,7 +24,7 @@ export default function Home() {
         <div className="absolute w-full h-[667px] z-[2] top-0 bottom-0  bg-black opacity-50" />
         <Video className="absolute top-0 bottom-0 h-[667px] z-0 object-cover aspect-square" />
         <div className="flex w-full items-center flex-col z-5 flex-initial gap-y-4">
-          <ButtonAsLink showIcon={false} text="Создать личный кабинет" />
+          <AccentButton text="Создать личный кабинет" />
           <p className="text-[12px] text-center z-[7] text-[#808080]">Войти</p>
         </div>
       </section>
@@ -36,11 +36,10 @@ export default function Home() {
             удобные профили, персональные графики и доступность везде и всегда.
           </p>
         </section>
-        <ButtonAsLink
-          showIcon
-          href="/animal-edit"
+        <AccentButton
+          icon={<ArrowForButtonIcon />}
+          className="rounded-[10px] rounded-t-none "
           text="В приложение"
-          customStyle="rounded-[10px] rounded-t-none"
         />
       </section>
       <section className="flex flex-col  rounded-md gap-y-4 pt-3  text-white">
@@ -67,14 +66,17 @@ export default function Home() {
             </ol>
           </div>
         </section>
-        <ButtonAsLink showIcon text="Начать сейчас" />
+        <AccentButton icon={<ArrowForButtonIcon />} text="Начать сейчас" />
       </section>
       <SliderFedBack />
       <section className="gap-y-4 flex flex-col text-white">
         <h2 className="text-3xl text-balance leading-9">
           Готовы упростить уход за вашим питомцем?
         </h2>
-        <ButtonAsLink showIcon text="Зарегистрирваться сейчас" />
+        <AccentButton
+          icon={<ArrowForButtonIcon />}
+          text="Зарегистрироваться сейчас"
+        />
       </section>
       <section className="gap-y-4  flex flex-col text-white bg-bgStone750 py-3 rounded-md px-[10px]">
         <Title text="FAQ" />

@@ -1,32 +1,24 @@
 "use client";
 
-import { InfoPet, userId } from "@/shared/constant";
 import {
   Forms,
   Genders,
   patternValueOfNumber,
 } from "@/shared/constant/formProps";
-import { ClockCircleIcon } from "@/shared/svg";
 import { ErrorKeyMessage, FormValues } from "@/shared/types";
 import convertPhoneNumber from "@/shared/utils";
-import { parseTime } from "@internationalized/date";
 import { TimeInput } from "@nextui-org/react";
-import { parsePhoneNumber } from "libphonenumber-js";
-import { useRouter } from "next/navigation";
+// import { useRouter } from "next/navigation";
+import { ClockCircleIcon } from "@/shared/svg";
+import { parsePhoneNumber, isValidPhoneNumber } from "libphonenumber-js";
 import React, { useEffect, useState } from "react";
 import { Controller, useForm } from "react-hook-form";
-import CustomButton from "../CustomButton";
+import AccentButton from "../ButtonAccent";
 import Loader from "../Loader";
 import Title from "../TitleAccent";
 import Weekdays from "./Weekday";
 
-interface Props {
-  params: {
-    id: string;
-  };
-}
-
-function FormComponentWithId({ params: { id } }: Props) {
+export default function FormComponent() {
   const {
     register,
     control,
@@ -35,13 +27,9 @@ function FormComponentWithId({ params: { id } }: Props) {
     setValue,
     reset,
   } = useForm<FormValues>({ mode: "onChange" });
-
-  const dataPet = InfoPet.find((item) => item.id === +id);
-
   const [isShowLoader, setIsShowLoader] = useState<boolean>(false);
   const [isShowResult, setIsShowResult] = useState<ErrorKeyMessage>("loading");
   const isError = Object.keys(errors).length > 0;
-  const nav = useRouter();
 
   const onSubmit = async (data: FormValues) => {
     const formData = new FormData();
@@ -54,14 +42,15 @@ function FormComponentWithId({ params: { id } }: Props) {
     formData.append("file", data.file[0]);
     formData.append("tel", parsePhoneNumber(data.tel, "RU").number);
 
-    const res = await fetch("https://api.web3forms.com/submit", {
+    const res = await fetch("https://api.web3forms.com/sudbmit", {
       method: "POST",
       body: formData,
-    }).then((res) => res.json());
-    setTimeout(() => setIsShowLoader(false), 4000); // Показываем лоадер 3 сек
+    })
+      .then((res) => res.json())
+      .finally(() => setTimeout(() => setIsShowLoader(false), 5000));
+
     if (res.success) {
       setIsShowResult("success");
-      nav.push(`/animal-card/${userId}`);
     } else {
       setIsShowResult("error");
     }
@@ -75,12 +64,10 @@ function FormComponentWithId({ params: { id } }: Props) {
     <form
       onSubmit={handleSubmit(onSubmit)}
       className="flex flex-col gap-y-5 pb-[36px] items-start w-full text-stone-550"
-      method="post"
     >
       <span className="flex w-full justify-center">
         {isShowLoader && <Loader isShowResult={isShowResult} />}
       </span>
-
       <section className="z-0 relative left-0 items-start pt-4">
         <span className="w-full text-blue-700 cursor-pointer left-7">
           Добавить изображение
@@ -89,6 +76,7 @@ function FormComponentWithId({ params: { id } }: Props) {
           htmlFor="file"
           className="flex relative w-full flex-row gap-x-3 z-10 cursor-pointer"
         >
+          {}
           <input
             {...register("file")}
             type="file"
@@ -104,28 +92,27 @@ function FormComponentWithId({ params: { id } }: Props) {
         return (
           <label
             key={form.id}
-            htmlFor={form.register_name}
-            className={`w-full border-b-[1px] leading-6 ${errors[form.register_name] ? "border-red-400" : "border-borderColor"}`}
+            htmlFor={form.registerName}
+            className={`w-full border-b-[1px] leading-6 ${errors[form.registerName] ? "border-red-400" : "border-borderColor"}`}
           >
             <input
-              {...register(form.register_name, {
+              {...register(form.registerName, {
                 required: form.message,
                 pattern: {
                   value: form.validate,
                   message: "Введине корректные данные",
                 },
               })}
-              id={form.register_name}
+              id={form.registerName}
               autoComplete="off"
-              defaultValue={dataPet?.pet_info[form.register_name]}
               placeholder={form.placeholder}
               type={form.type}
               className={`bg-transparent w-full text-white pl-[10px] text-sm placeholder:text-base 
                 focus-visible:outline-none h-[35px] appearance-none`}
             />
-            {form.validate && errors[form.register_name] && (
+            {form.validate && errors[form.registerName] && (
               <span className="text-[12px] text-errorMessage">
-                {`${errors[form.register_name]?.message}`}
+                {`${errors[form.registerName]?.message}`}
               </span>
             )}
           </label>
@@ -153,8 +140,9 @@ function FormComponentWithId({ params: { id } }: Props) {
                 >
                   <input
                     {...field}
-                    type="radio"
                     id="gender"
+                    type="radio"
+                    value={gender.value}
                     onChange={() => field.onChange(gender.value)}
                   />
                   <span className="checkmark" />
@@ -186,21 +174,20 @@ function FormComponentWithId({ params: { id } }: Props) {
                   message: "Номер слишком короткий",
                 },
                 maxLength: {
-                  value: 18,
+                  value: 17,
                   message: "Номер слишком длинный",
                 },
               })}
               id="tel"
               placeholder="Рабочий номер телефона"
               type="tel"
-              defaultValue={dataPet?.pet_info.tel ?? ""}
               onChange={(e) =>
                 setValue("tel", convertPhoneNumber(e.target.value))
               }
               className={`bg-transparent w-full text-white pl-[10px] text-sm placeholder:text-base 
                 focus-visible:outline-none h-[35px]`}
             />
-            {errors.tel && errors?.name?.message && (
+            {errors.tel && errors.name?.message && (
               <span className="text-[12px] text-errorMessage">
                 {`${errors?.tel?.message}`}
               </span>
@@ -209,54 +196,48 @@ function FormComponentWithId({ params: { id } }: Props) {
           <Controller
             name="days"
             control={control}
-            render={() => (
-              <Weekdays dataDays={["Вс", "Пн"]} setValue={setValue} />
-            )}
+            render={() => <Weekdays setValue={setValue} />}
           />
           <section className="flex flex-row gap-x-5">
             <Controller
-              name="time_start"
+              name="timeStart"
               control={control}
-              render={({ field }) => (
+              render={() => (
                 <TimeInput
                   label="Начало рабочего дня"
                   isRequired
-                  errorMessage="Выберите время начала рабочего дня"
-                  isInvalid={!field.value}
                   hourCycle={24}
                   id="timeStart"
                   granularity="minute"
                   endContent={
                     <ClockCircleIcon className="text-xl  pointer-events-none flex-shrink-0" />
                   }
-                  onChange={(time) => setValue("time_start", `${time}`)}
+                  onChange={(time) => setValue("timeStart", `${time}`)}
                 />
               )}
             />
             <Controller
-              name="time_end"
+              name="timeEnd"
               control={control}
-              render={({ field }) => (
+              render={() => (
                 <TimeInput
-                  label="Конец рабочего дня"
+                  label="Начало рабочего дня"
                   hourCycle={24}
                   id="timeStart"
                   isRequired
-                  errorMessage="Выберите время окончания рабочего дня"
-                  isInvalid={!field.value}
                   fullWidth
                   granularity="minute"
                   endContent={
                     <ClockCircleIcon className="text-xl  pointer-events-none flex-shrink-0" />
                   }
-                  onChange={(time) => setValue("time_end", `${time}`)}
+                  onChange={(time) => setValue("timeEnd", `${time}`)}
                 />
               )}
             />
           </section>
         </div>
       </section>
-      <CustomButton
+      <AccentButton
         actionType="submit"
         isDisabled={isError}
         className={`${isError && "opacity-50"}`}
@@ -265,4 +246,3 @@ function FormComponentWithId({ params: { id } }: Props) {
     </form>
   );
 }
-export default FormComponentWithId;

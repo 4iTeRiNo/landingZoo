@@ -62,7 +62,6 @@ const CustomCheckbox = forwardRef<HTMLInputElement, CheckboxProps>(
           size="lg"
           radioGroup=""
           radius="md"
-          defaultValue={isSelected}
           {...getLabelProps()}
         >
           {children || (isSelected ? "Enabled" : "Disabled")}

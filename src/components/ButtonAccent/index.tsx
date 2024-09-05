@@ -1,24 +1,20 @@
 import { Button } from "@nextui-org/react";
 import { ReactNode } from "react";
 
-const CustomButton = ({
+const AccentButton = ({
   text,
   isLoading = false,
   icon,
   className,
   isDisabled,
   actionType = "button",
-  path,
-  onPress,
 }: {
   text: string;
   isLoading?: boolean;
   icon?: ReactNode;
   className?: string;
   isDisabled?: boolean;
-  actionType: "button" | "submit" | "reset" | undefined;
-  path?: string;
-  onPress?: () => void;
+  actionType?: "button" | "submit" | "reset" | undefined;
 }) => {
   return (
     <Button
@@ -26,7 +22,6 @@ const CustomButton = ({
       isDisabled={isDisabled}
       className={`relative z-[9] gap-x-[2.78vw] text-white bg-accent-gradient w-full p-3 rounded ${className}`}
       isLoading={isLoading}
-      href={path}
       spinner={
         <svg
           className="animate-spin h-5 w-5 text-current"
@@ -55,4 +50,4 @@ const CustomButton = ({
     </Button>
   );
 };
-export default CustomButton;
+export default AccentButton;
