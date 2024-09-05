@@ -1,35 +1,40 @@
 "use client";
 
+import { userId } from "@/shared/constant";
 import {
   Forms,
   Genders,
   patternValueOfNumber,
 } from "@/shared/constant/formProps";
-import { ErrorKeyMessage, FormValues } from "@/shared/types";
-import convertPhoneNumber from "@/shared/utils";
-import { TimeInput } from "@nextui-org/react";
-// import { useRouter } from "next/navigation";
 import { ClockCircleIcon } from "@/shared/svg";
-import { parsePhoneNumber, isValidPhoneNumber } from "libphonenumber-js";
+import { ErrorKeyMessage, FormValues } from "@/shared/types";
+import { convertPhoneNumber } from "@/shared/utils";
+import { TimeInput } from "@nextui-org/react";
+import { parsePhoneNumber } from "libphonenumber-js";
+import { useRouter } from "next/navigation";
 import React, { useEffect, useState } from "react";
 import { Controller, useForm } from "react-hook-form";
-import AccentButton from "../ButtonAccent";
+import CustomButton from "../CustomButton";
 import Loader from "../Loader";
 import Title from "../TitleAccent";
 import Weekdays from "./Weekday";
 
-export default function FormComponent() {
+function FormComponentNewForm() {
   const {
     register,
     control,
     handleSubmit,
     formState: { errors },
     setValue,
+    setFocus,
+    watch,
     reset,
   } = useForm<FormValues>({ mode: "onChange" });
+
   const [isShowLoader, setIsShowLoader] = useState<boolean>(false);
   const [isShowResult, setIsShowResult] = useState<ErrorKeyMessage>("loading");
   const isError = Object.keys(errors).length > 0;
+  const nav = useRouter();
 
   const onSubmit = async (data: FormValues) => {
     const formData = new FormData();
@@ -42,15 +47,14 @@ export default function FormComponent() {
     formData.append("file", data.file[0]);
     formData.append("tel", parsePhoneNumber(data.tel, "RU").number);
 
-    const res = await fetch("https://api.web3forms.com/sudbmit", {
+    const res = await fetch("https://api.web3forms.com/submit", {
       method: "POST",
       body: formData,
-    })
-      .then((res) => res.json())
-      .finally(() => setTimeout(() => setIsShowLoader(false), 5000));
-
+    }).then((res) => res.json());
+    setTimeout(() => setIsShowLoader(false), 4000); // Показываем лоадер 3 сек
     if (res.success) {
       setIsShowResult("success");
+      nav.push(`/animal-card/${userId}`);
     } else {
       setIsShowResult("error");
     }
@@ -64,10 +68,12 @@ export default function FormComponent() {
     <form
       onSubmit={handleSubmit(onSubmit)}
       className="flex flex-col gap-y-5 pb-[36px] items-start w-full text-stone-550"
+      method="post"
     >
       <span className="flex w-full justify-center">
         {isShowLoader && <Loader isShowResult={isShowResult} />}
       </span>
+
       <section className="z-0 relative left-0 items-start pt-4">
         <span className="w-full text-blue-700 cursor-pointer left-7">
           Добавить изображение
@@ -76,7 +82,6 @@ export default function FormComponent() {
           htmlFor="file"
           className="flex relative w-full flex-row gap-x-3 z-10 cursor-pointer"
         >
-          {}
           <input
             {...register("file")}
             type="file"
@@ -92,27 +97,25 @@ export default function FormComponent() {
         return (
           <label
             key={form.id}
-            htmlFor={form.registerName}
-            className={`w-full border-b-[1px] leading-6 ${errors[form.registerName] ? "border-red-400" : "border-borderColor"}`}
+            htmlFor={form.register_name}
+            className={`w-full border-b-[1px] leading-6 ${errors[form.register_name] ? "border-red-400" : "border-borderColor"}`}
           >
             <input
-              {...register(form.registerName, {
+              {...register(form.register_name, {
                 required: form.message,
-                pattern: {
-                  value: form.validate,
-                  message: "Введине корректные данные",
-                },
+                validate: (form.type === "text" && form.validate) || undefined,
               })}
-              id={form.registerName}
+              id={form.register_name}
               autoComplete="off"
               placeholder={form.placeholder}
               type={form.type}
               className={`bg-transparent w-full text-white pl-[10px] text-sm placeholder:text-base 
                 focus-visible:outline-none h-[35px] appearance-none`}
             />
-            {form.validate && errors[form.registerName] && (
+            {errors[form.register_name] && (
               <span className="text-[12px] text-errorMessage">
-                {`${errors[form.registerName]?.message}`}
+                {`${errors[form.register_name]?.message}` ||
+                  "Введите корректные данные"}
               </span>
             )}
           </label>
@@ -140,8 +143,8 @@ export default function FormComponent() {
                 >
                   <input
                     {...field}
-                    id="gender"
                     type="radio"
+                    id="gender"
                     value={gender.value}
                     onChange={() => field.onChange(gender.value)}
                   />
@@ -187,7 +190,7 @@ export default function FormComponent() {
               className={`bg-transparent w-full text-white pl-[10px] text-sm placeholder:text-base 
                 focus-visible:outline-none h-[35px]`}
             />
-            {errors.tel && errors.name?.message && (
+            {errors.tel && errors?.name?.message && (
               <span className="text-[12px] text-errorMessage">
                 {`${errors?.tel?.message}`}
               </span>
@@ -200,44 +203,46 @@ export default function FormComponent() {
           />
           <section className="flex flex-row gap-x-5">
             <Controller
-              name="timeStart"
+              name="time_start"
               control={control}
-              render={() => (
+              render={({ field }) => (
                 <TimeInput
                   label="Начало рабочего дня"
                   isRequired
                   hourCycle={24}
                   id="timeStart"
                   granularity="minute"
+                  isInvalid={!field.value}
                   endContent={
                     <ClockCircleIcon className="text-xl  pointer-events-none flex-shrink-0" />
                   }
-                  onChange={(time) => setValue("timeStart", `${time}`)}
+                  onChange={(time) => setValue("time_start", `${time}`)}
                 />
               )}
             />
             <Controller
-              name="timeEnd"
+              name="time_end"
               control={control}
-              render={() => (
+              render={({ field }) => (
                 <TimeInput
                   label="Начало рабочего дня"
                   hourCycle={24}
-                  id="timeStart"
+                  id="time_start"
                   isRequired
                   fullWidth
+                  isInvalid={!field.value}
                   granularity="minute"
                   endContent={
                     <ClockCircleIcon className="text-xl  pointer-events-none flex-shrink-0" />
                   }
-                  onChange={(time) => setValue("timeEnd", `${time}`)}
+                  onChange={(time) => setValue("time_end", `${time}`)}
                 />
               )}
             />
           </section>
         </div>
       </section>
-      <AccentButton
+      <CustomButton
         actionType="submit"
         isDisabled={isError}
         className={`${isError && "opacity-50"}`}
@@ -246,3 +251,5 @@ export default function FormComponent() {
     </form>
   );
 }
+
+export default FormComponentNewForm;

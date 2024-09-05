@@ -1,6 +1,6 @@
 "use client";
 
-import { mockComments } from "@/shared/constant";
+import { mockComments } from "@/shared/mock";
 import "swiper/css";
 import "swiper/css/pagination";
 import { Pagination } from "swiper/modules";

@@ -11,6 +11,7 @@
     "airbnb",
     "prettier",
     "eslint:recommended",
+    "next",
     "next/core-web-vitals"
   ],
   "parserOptions": {

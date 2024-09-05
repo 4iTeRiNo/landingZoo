@@ -1,4 +1,5 @@
 import { FormProps, FormRegister, SelectOptions } from "../types";
+import { validateValuePattern } from "../utils";
 import patternValue from "./errorWord";
 
 enum GenderEnum {
@@ -11,40 +12,40 @@ export const Forms: FormProps[] = [
     id: 1,
     placeholder: "Имя",
     type: "text",
-    registerName: FormRegister.name,
-    validate: patternValue,
+    register_name: FormRegister.name,
+    validate: validateValuePattern,
     message: "Поле не может быть пустым",
   },
   {
     id: 2,
     placeholder: "Порода",
     type: "text",
-    registerName: FormRegister.breed,
-    validate: patternValue,
+    register_name: FormRegister.breed,
+    validate: validateValuePattern,
     message: "Поле не может быть пустым",
   },
   {
     id: 3,
     placeholder: "Возвраст",
     type: "number",
-    registerName: FormRegister.age,
-    validate: /^([1-9]{1,2}){1}(\.[0-9]{1,2})?$/,
+    register_name: FormRegister.age,
+    validate: validateValuePattern,
     message: "Поле не может быть пустым",
   },
   {
     id: 4,
     placeholder: "Вес",
     type: "number",
-    registerName: FormRegister.weight,
-    validate: /^([1-9]{1,2}){1}(\.[0-9]{1,2})?$/,
+    register_name: FormRegister.weight,
+    validate: validateValuePattern,
     message: "Поле не может быть пустым",
   },
   {
     id: 5,
     placeholder: "Особые приметы или аллергии",
     type: "text",
-    registerName: FormRegister.features,
-    validate: patternValue,
+    register_name: FormRegister.features,
+    validate: validateValuePattern,
     message: "Поле не может быть пустым",
   },
 ];
@@ -62,4 +63,4 @@ export const Genders: SelectOptions[] = [
   },
 ];
 
-export const patternValueOfNumber = /^8 \(\d{3}\) \d{3}-\d{2}-\d{2}$/;
+export const patternValueOfNumber = /^(8|\+7) \(\d{3}\) \d{3}-\d{2}-\d{2}$/;

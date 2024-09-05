@@ -1,6 +1,7 @@
 import { isValidPhoneNumber, parsePhoneNumber } from "libphonenumber-js";
+import patternValue from "../constant/errorWord";
 
-const convertPhoneNumber = (inp: string) => {
+export const convertPhoneNumber = (inp: string) => {
   if (isValidPhoneNumber(inp, "RU")) {
     const phoneNumber = parsePhoneNumber(inp, "RU");
     return phoneNumber.formatNational();
@@ -8,4 +9,6 @@ const convertPhoneNumber = (inp: string) => {
   return inp;
 };
 
-export default convertPhoneNumber;
+export const validateValuePattern = (str: string): boolean => {
+  return patternValue.test(str.toLowerCase());
+};

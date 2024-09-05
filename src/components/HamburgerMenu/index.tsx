@@ -1,11 +1,11 @@
 "use client";
 
-import { mockContacts, mockSocial, navigateLinks } from "@/shared/constant";
+import { mockContacts, mockSocial, navigateLinks } from "@/shared/mock";
 import { useState } from "react";
 import useOutsideClick from "@/shared/hooks/useOutSideClick";
 import Link from "next/link";
 import Title from "../TitleAccent";
-import AccentButton from "../ButtonAccent";
+import ButtonAsLink from "../CustomLink";
 
 const HamburgerMenu = () => {
   const [isNavOpen, setIsNavOpen] = useState(false);
@@ -43,7 +43,7 @@ const HamburgerMenu = () => {
       </button>
       {isNavOpen && (
         <section
-          className="flex flex-col animate-moveToLeft gap-y-[25px] py-4 px-[5vw] absolute w-11/12 
+          className="flex flex-col animate-moveToLeft shadow-bgShadow gap-y-[25px] py-4 px-[5vw] absolute w-[94.444vw]
           h-[625px] z-[12] left-0 right-0 mx-auto space-y-0 top-[30px] bottom-0 rounded-xl bg-bgColor "
         >
           <section className="flex flex-col gap-y-[6.2vw] pt-9">
@@ -62,7 +62,7 @@ const HamburgerMenu = () => {
               ))}
             </div>
             <section className="flex flex-col animate-[moveToLeftLinks_1.5s] gap-y-3 justify-center text-center">
-              <AccentButton text="Зарегистрироваться" />
+              <ButtonAsLink text="Зарегистрироваться" />
               <Link href="/client" className="text-xs text-greyText">
                 Перейти в ZooRama клиент
               </Link>

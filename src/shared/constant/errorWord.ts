@@ -119,12 +119,12 @@ const forbiddenWords = [
   "xyecoc",
   "хуеплеты",
   "чмо",
+  "хуй",
+  "пизда",
+  "Пирадасина",
 ];
 
-const forbiddenPattern = forbiddenWords
-  .map((word) => `(?:${word})`)
-  .join("|")
-  .toLowerCase();
+const forbiddenPattern = forbiddenWords.map((word) => `(?:${word})`).join("|");
 
 const patternValue = new RegExp(
   `^(?!.*(?:${forbiddenPattern})).*[a-zA-Zа-яА-ЯёЁ\\s]+$`

@@ -1,6 +1,5 @@
-import { mockSocial, navigateLinks } from "@/shared/constant";
+import { mockSocial, navigateLinks } from "@/shared/mock";
 import React from "react";
-import Image from "next/image";
 import Link from "next/link";
 
 const Footer = () => {

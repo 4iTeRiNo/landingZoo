@@ -1,9 +1,10 @@
-import AccentButton from "@/components/ButtonAccent";
+import AccordionComponent from "@/components/Accordion";
+import ButtonAsLink from "@/components/CustomLink";
 import SliderFedBack from "@/components/Slider/SliderFedBack";
 import Title from "@/components/TitleAccent";
 import Video from "@/components/Video/Video";
-import { detailsSteps, mockContacts, mockFaqs } from "@/shared/constant";
-import { ArrowForButtonIcon, LineStepIcon } from "@/shared/svg";
+import { detailsSteps, mockContacts } from "@/shared/mock";
+import { LineStepIcon } from "@/shared/svg";
 
 export default function Home() {
   return (
@@ -18,13 +19,13 @@ export default function Home() {
           </h1>
           <p className="text-base leading-6 text-balance">
             Присоединяйтесь к нашему сообществу и управляйте уходом за питомцами
-            легкостью!
+            с легкостью!
           </p>
         </div>
         <div className="absolute w-full h-[667px] z-[2] top-0 bottom-0  bg-black opacity-50" />
         <Video className="absolute top-0 bottom-0 h-[667px] z-0 object-cover aspect-square" />
         <div className="flex w-full items-center flex-col z-5 flex-initial gap-y-4">
-          <AccentButton text="Создать личный кабинет" />
+          <ButtonAsLink showIcon={false} text="Создать личный кабинет" />
           <p className="text-[12px] text-center z-[7] text-[#808080]">Войти</p>
         </div>
       </section>
@@ -36,10 +37,11 @@ export default function Home() {
             удобные профили, персональные графики и доступность везде и всегда.
           </p>
         </section>
-        <AccentButton
-          icon={<ArrowForButtonIcon />}
-          className="rounded-[10px] rounded-t-none "
+        <ButtonAsLink
+          showIcon
+          href="/animal-edit"
           text="В приложение"
+          customStyle="rounded-[10px] rounded-t-none"
         />
       </section>
       <section className="flex flex-col  rounded-md gap-y-4 pt-3  text-white">
@@ -66,28 +68,18 @@ export default function Home() {
             </ol>
           </div>
         </section>
-        <AccentButton icon={<ArrowForButtonIcon />} text="Начать сейчас" />
+        <ButtonAsLink showIcon text="Начать сейчас" />
       </section>
       <SliderFedBack />
       <section className="gap-y-4 flex flex-col text-white">
         <h2 className="text-3xl text-balance leading-9">
           Готовы упростить уход за вашим питомцем?
         </h2>
-        <AccentButton
-          icon={<ArrowForButtonIcon />}
-          text="Зарегистрироваться сейчас"
-        />
+        <ButtonAsLink showIcon text="Зарегистрирваться сейчас" />
       </section>
       <section className="gap-y-4  flex flex-col text-white bg-bgStone750 py-3 rounded-md px-[10px]">
         <Title text="FAQ" />
-        {mockFaqs.map((faq) => (
-          <details key={faq.id}>
-            <summary className="text-base font-medium pb-[2.5vw]">
-              {faq.title}
-            </summary>
-            <p className="text-sm leading-6">{faq.content}</p>
-          </details>
-        ))}
+        <AccordionComponent />
       </section>
       <section className="gap-y-4 flex flex-col text-white">
         <Title text="Контакты" />

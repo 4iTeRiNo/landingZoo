@@ -1,15 +1,23 @@
-import { days } from "@/shared/constant";
-import { FormValues } from "@/shared/types";
+import { days } from "@/shared/mock";
+import { FormValues, Weekday } from "@/shared/types";
 import { CheckboxGroup } from "@nextui-org/react";
 import React, { useEffect, useState } from "react";
 import { UseFormSetValue } from "react-hook-form";
 import CustomCheckbox from "./CustomCheckBox";
 
-const Weekdays = ({ setValue }: { setValue: UseFormSetValue<FormValues> }) => {
+const Weekdays = ({
+  setValue,
+  dataDays,
+}: {
+  setValue: UseFormSetValue<FormValues>;
+  dataDays?: Weekday[];
+}) => {
   const [groupSelected, setGroupSelected] = useState<string[]>([]);
   useEffect(() => {
     setValue("days", groupSelected.join(","));
-  }, [groupSelected, setValue]);
+    if (!dataDays) return;
+    setGroupSelected(dataDays);
+  }, [groupSelected, setValue, dataDays]);
   return (
     <CheckboxGroup
       isRequired
@@ -23,11 +31,12 @@ const Weekdays = ({ setValue }: { setValue: UseFormSetValue<FormValues> }) => {
       }}
       size="lg"
       value={groupSelected}
+      defaultValue={dataDays}
       onChange={setGroupSelected}
     >
       {days.map((day) => (
         <CustomCheckbox key={day.id} value={day.key}>
-          {day.label}
+          {day.key}
         </CustomCheckbox>
       ))}
     </CheckboxGroup>

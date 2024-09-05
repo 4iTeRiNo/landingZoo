@@ -39,8 +39,8 @@ export type FormValues = {
   features: string;
   tel: string;
   days: string;
-  timeStart: string;
-  timeEnd: string;
+  time_start: string;
+  time_end: string;
   file: string;
 };
 
@@ -56,11 +56,18 @@ export enum FormRegister {
 
 export type FormProps = {
   id: number;
-  registerName: Partial<FormRegister>;
-  validate: RegExp;
+  register_name: Partial<FormRegister>;
+  validate: (str: string) => boolean;
   message: string;
   type: string;
   placeholder: string;
+};
+
+export type Weekday = "Пн" | "Вт" | "Ср" | "Чт" | "Пт" | "Сб" | "Вс";
+
+export type Day = {
+  id: number;
+  key: Weekday;
 };
 
 export type ErrorKeyMessage =
@@ -69,3 +76,19 @@ export type ErrorKeyMessage =
   | "warning"
   | "info"
   | "loading";
+
+export type User = {
+  id: number;
+  name: string;
+  tel: string;
+  role: string;
+  avatar: string;
+  email: string;
+  description: string;
+};
+
+export type InfoPets = {
+  id: number;
+  pet_info: FormValues;
+  user_info: User;
+};
