@@ -2,7 +2,7 @@ import HamburgerMenu from "@/components/HamburgerMenu";
 
 const Header = () => {
   return (
-    <div
+    <header
       className="flex flex-row gap-x-5 justify-between  w-full z-10
     px-[4.44vw] py-[8.33vw] bg-bgColor"
     >
@@ -15,7 +15,7 @@ const Header = () => {
       <div className="flex-none flex flex-row items-center justify-end w-2/5 z-10 ">
         <HamburgerMenu />
       </div>
-    </div>
+    </header>
   );
 };
 

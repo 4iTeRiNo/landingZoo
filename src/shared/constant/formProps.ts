@@ -1,51 +1,50 @@
-import { FormProps, FormRegister, SelectOptions } from "../types";
-import { validateValuePattern } from "../utils";
-import patternValue from "./errorWord";
+import { FormProps, FormRegisterName, SelectOptions } from "../types";
+import { validateTextPattern } from "../utils";
 
 enum GenderEnum {
   female = "девочка",
   male = "мальчик",
 }
 
-export const Forms: FormProps[] = [
+export const FormsCreateAnimal: FormProps[] = [
   {
     id: 1,
     placeholder: "Имя",
     type: "text",
-    register_name: FormRegister.name,
-    validate: validateValuePattern,
+    register_name: FormRegisterName.name,
+    validate: validateTextPattern,
     message: "Поле не может быть пустым",
   },
   {
     id: 2,
     placeholder: "Порода",
     type: "text",
-    register_name: FormRegister.breed,
-    validate: validateValuePattern,
+    register_name: FormRegisterName.breed,
+    validate: validateTextPattern,
     message: "Поле не может быть пустым",
   },
   {
     id: 3,
     placeholder: "Возвраст",
     type: "number",
-    register_name: FormRegister.age,
-    validate: validateValuePattern,
+    register_name: FormRegisterName.age,
+    validate: validateTextPattern,
     message: "Поле не может быть пустым",
   },
   {
     id: 4,
     placeholder: "Вес",
     type: "number",
-    register_name: FormRegister.weight,
-    validate: validateValuePattern,
+    register_name: FormRegisterName.weight,
+    validate: validateTextPattern,
     message: "Поле не может быть пустым",
   },
   {
     id: 5,
     placeholder: "Особые приметы или аллергии",
     type: "text",
-    register_name: FormRegister.features,
-    validate: validateValuePattern,
+    register_name: FormRegisterName.features,
+    validate: validateTextPattern,
     message: "Поле не может быть пустым",
   },
 ];
@@ -63,4 +62,45 @@ export const Genders: SelectOptions[] = [
   },
 ];
 
-export const patternValueOfNumber = /^(8|\+7) \(\d{3}\) \d{3}-\d{2}-\d{2}$/;
+export const FormCreateUser: FormProps[] = [
+  /* {
+    id: 1,
+    placeholder: "Имя",
+    type: "text",
+    register_name: FormRegisterName.name,
+    validate: validateTextPattern,
+    message: "Поле не может быть пустым",
+  },
+  {
+    id: 2,
+    placeholder: "Фамилия",
+    type: "text",
+    register_name: FormRegisterName.surname,
+    validate: validateTextPattern,
+    message: "Поле не может быть пустым",
+  }, */
+  {
+    id: 1,
+    placeholder: "Email",
+    type: "email",
+    register_name: FormRegisterName.tel,
+    validate: validateTextPattern,
+    message: "Поле не может быть пустым",
+  },
+  {
+    id: 2,
+    placeholder: "Пароль",
+    type: "password",
+    register_name: FormRegisterName.password,
+    validate: validateTextPattern,
+    message: "Поле не может быть пустым",
+  },
+  {
+    id: 3,
+    placeholder: "Повторите пароль",
+    type: "password",
+    register_name: FormRegisterName.repeat_password,
+    validate: validateTextPattern,
+    message: "Поле не может быть пустым",
+  },
+];

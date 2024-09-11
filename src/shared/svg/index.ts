@@ -22,3 +22,5 @@ export { default as LineStepIcon } from "@/assets/svg/line-step.svg";
 export { default as CheckIcon } from "@/assets/svg/check-icon.svg";
 export { default as ClockCircleIcon } from "@/assets/svg/clock-circle.svg";
 export { default as WarningIcon } from "@/assets/svg/warning-icon.svg";
+export { default as AccountCircleIcon } from "@/assets/svg/account_circle.svg";
+export { default as VisibilityIcon } from "@/assets/svg/visibility_off.svg";

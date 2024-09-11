@@ -6,14 +6,20 @@ const AccentButton = ({
   isLoading = false,
   icon,
   className,
+  isDisabled,
+  actionType = "button",
 }: {
   text: string;
   isLoading?: boolean;
   icon?: ReactNode;
   className?: string;
+  isDisabled?: boolean;
+  actionType?: "button" | "submit" | "reset" | undefined;
 }) => {
   return (
     <Button
+      type={actionType}
+      isDisabled={isDisabled}
       className={`relative z-[9] gap-x-[2.78vw] text-white bg-accent-gradient w-full p-3 rounded ${className}`}
       isLoading={isLoading}
       spinner={

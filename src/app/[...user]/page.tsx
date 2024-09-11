@@ -15,7 +15,7 @@ type Props = {
   };
 };
 
-function UserInfoComponent({ params: { userProps } }: Readonly<Props>) {
+async function UserInfoComponent({ params: { userProps } }: Readonly<Props>) {
   const { avatar, description, name } = userProps;
 
   const style = userStyle();

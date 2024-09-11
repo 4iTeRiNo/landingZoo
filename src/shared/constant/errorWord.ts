@@ -126,8 +126,8 @@ const forbiddenWords = [
 
 const forbiddenPattern = forbiddenWords.map((word) => `(?:${word})`).join("|");
 
-const patternValue = new RegExp(
+const patternText = new RegExp(
   `^(?!.*(?:${forbiddenPattern})).*[a-zA-Zа-яА-ЯёЁ\\s]+$`
 );
 
-export default patternValue;
+export default patternText;

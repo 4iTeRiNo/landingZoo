@@ -1,8 +1,8 @@
 import { infoPetKey } from "@/shared/constant";
-import { FormValues } from "@/shared/types";
+import { FormAnimalValues } from "@/shared/types";
 import Title from "../TitleAccent";
 
-const CardAnimal = ({ dataPet }: { dataPet: FormValues }) => {
+const CardAnimal = ({ dataPet }: { dataPet: FormAnimalValues }) => {
   const infoPet = Object.keys(dataPet).map((key) => {
     return ["namePet", "breed", "age", "gender", "weight", "features"]
       .filter((item) => item === key)

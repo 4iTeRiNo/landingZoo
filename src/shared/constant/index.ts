@@ -11,3 +11,6 @@ export const infoPetKey = new Map([
 ]);
 
 export const userId = 1;
+
+export const patternValueOfNumber = /^(8|\+7) \(\d{3}\) \d{3}-\d{2}-\d{2}$/;
+export const patternValuePsw = /(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}/;

@@ -1,5 +1,5 @@
 import { days } from "@/shared/mock";
-import { FormValues, Weekday } from "@/shared/types";
+import { FormAnimalValues, Weekday } from "@/shared/types";
 import { CheckboxGroup } from "@nextui-org/react";
 import React, { useEffect, useState } from "react";
 import { UseFormSetValue } from "react-hook-form";
@@ -9,7 +9,7 @@ const Weekdays = ({
   setValue,
   dataDays,
 }: {
-  setValue: UseFormSetValue<FormValues>;
+  setValue: UseFormSetValue<FormAnimalValues>;
   dataDays?: Weekday[];
 }) => {
   const [groupSelected, setGroupSelected] = useState<string[]>([]);

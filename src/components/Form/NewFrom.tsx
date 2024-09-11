@@ -1,13 +1,13 @@
 "use client";
 
-import { userId } from "@/shared/constant";
-import {
-  Forms,
-  Genders,
-  patternValueOfNumber,
-} from "@/shared/constant/formProps";
+import { patternValueOfNumber, userId } from "@/shared/constant";
+import { FormsCreateAnimal, Genders } from "@/shared/constant/formProps";
 import { ClockCircleIcon } from "@/shared/svg";
-import { ErrorKeyMessage, FormValues } from "@/shared/types";
+import {
+  ErrorKeyMessage,
+  FormAnimalValues,
+  keyAnimalValues,
+} from "@/shared/types";
 import { convertPhoneNumber } from "@/shared/utils";
 import { TimeInput } from "@nextui-org/react";
 import { parsePhoneNumber } from "libphonenumber-js";
@@ -26,17 +26,15 @@ function FormComponentNewForm() {
     handleSubmit,
     formState: { errors },
     setValue,
-    setFocus,
-    watch,
     reset,
-  } = useForm<FormValues>({ mode: "onChange" });
+  } = useForm<FormAnimalValues, ErrorKeyMessage>({ mode: "onChange" });
 
   const [isShowLoader, setIsShowLoader] = useState<boolean>(false);
   const [isShowResult, setIsShowResult] = useState<ErrorKeyMessage>("loading");
   const isError = Object.keys(errors).length > 0;
   const nav = useRouter();
 
-  const onSubmit = async (data: FormValues) => {
+  const onSubmit = async (data: FormAnimalValues) => {
     const formData = new FormData();
 
     setIsShowLoader(true);
@@ -93,15 +91,15 @@ function FormComponentNewForm() {
           />
         </label>
       </section>
-      {Forms.map((form) => {
+      {FormsCreateAnimal.map((form) => {
         return (
           <label
             key={form.id}
             htmlFor={form.register_name}
-            className={`w-full border-b-[1px] leading-6 ${errors[form.register_name] ? "border-red-400" : "border-borderColor"}`}
+            className={`w-full border-b-[1px] leading-6 ${errors[form.register_name as keyAnimalValues] ? "border-red-400" : "border-borderColor"}`}
           >
             <input
-              {...register(form.register_name, {
+              {...register(form.register_name as keyAnimalValues, {
                 required: form.message,
                 validate: (form.type === "text" && form.validate) || undefined,
               })}
@@ -112,9 +110,9 @@ function FormComponentNewForm() {
               className={`bg-transparent w-full text-white pl-[10px] text-sm placeholder:text-base 
                 focus-visible:outline-none h-[35px] appearance-none`}
             />
-            {errors[form.register_name] && (
+            {errors[form.register_name as keyAnimalValues] && (
               <span className="text-[12px] text-errorMessage">
-                {`${errors[form.register_name]?.message}` ||
+                {`${errors[form.register_name as keyAnimalValues]?.message}` ||
                   "Введите корректные данные"}
               </span>
             )}

@@ -20,10 +20,10 @@ body {
   -font-family: "Inter", sans-serif;
   --second-family: "Roboto", sans-serif;
   --third-family: "Montserrat", sans-serif;
-  font-family: var(--second-family);
-  caret-color: white;
   --shadow-bg: rgba(0, 0, 0, 0.1) 0px 1px 3px 0px,
     rgba(0, 0, 0, 0.06) 0px 1px 2px 0px;
+  caret-color: white;
+  font-family: var(--second-family);
 }
 
 /* переопределение цвета пагинации */
@@ -124,7 +124,4 @@ input[type="file"] {
   height: 30px;
   font-size: 0;
   position: absolute;
-}
-.swiper-pagination .swiper-pagination-bullet-active {
-  background: var(--white);
 }

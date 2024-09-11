@@ -1,8 +1,6 @@
-import Footer from "@/components/Footer";
 import type { Metadata } from "next";
-import Header from "@/components/Header";
-import { inter, openSans, roboto } from "./fonts";
 import "./globals.css";
+import { inter, openSans, roboto } from "./fonts";
 
 export const metadata: Metadata = {
   title: "ZooRama",
@@ -20,9 +18,7 @@ export default function RootLayout({
         className={`${inter.variable} ${openSans.variable} 
       ${roboto.variable}`}
       >
-        <Header />
         {children}
-        <Footer />
       </body>
     </html>
   );

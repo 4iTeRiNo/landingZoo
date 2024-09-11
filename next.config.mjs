@@ -1,5 +1,10 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  env: {
+    BASE_URL: process.env.BASE_URL,
+    API_URL: process.env.API_URL,
+    SESSION_SECRET: process.env.SESSION_SECRET,
+  },
   webpack(config) {
     // Grab the existing rule that handles SVG imports
     const fileLoaderRule = config.module.rules.find((rule) =>

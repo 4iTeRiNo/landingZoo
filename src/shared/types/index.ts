@@ -1,3 +1,5 @@
+import { FieldErrors } from "react-hook-form";
+
 export type Comments = Comment[];
 export type Faqs = Faq[];
 export type Contacts = Contact[];
@@ -28,9 +30,10 @@ export type SelectOptions = {
   label: string;
 };
 
-export type key = keyof FormValues;
+export type keyAnimalValues = keyof FormAnimalValues;
+export type keyUserValues = keyof FormUserValues;
 
-export type FormValues = {
+type FormValues = {
   name: string;
   breed: string;
   age: string;
@@ -42,9 +45,24 @@ export type FormValues = {
   time_start: string;
   time_end: string;
   file: string;
+  surname: string;
+  email: string;
+  birth_date: string;
+  password: string;
+  repeat_password: string;
 };
 
-export enum FormRegister {
+export type FormAnimalValues = Omit<
+  FormValues,
+  "surname" | "email" | "password" | "repeat_password" | "birth_date"
+>;
+
+export type FormUserValues = Pick<
+  FormValues,
+  "email" | "password" | "repeat_password"
+>;
+
+export enum FormRegisterName {
   name = "name",
   breed = "breed",
   age = "age",
@@ -52,11 +70,18 @@ export enum FormRegister {
   weight = "weight",
   features = "features",
   tel = "tel",
+  surname = "surname",
+  email = "email",
+  birth_date = "birth_date",
+  password = "password",
+  repeat_password = "repeat_password",
 }
+
+export type TypeFieldErrors = FieldErrors<FormAnimalValues>;
 
 export type FormProps = {
   id: number;
-  register_name: Partial<FormRegister>;
+  register_name: FormRegisterName;
   validate: (str: string) => boolean;
   message: string;
   type: string;
@@ -77,6 +102,12 @@ export type ErrorKeyMessage =
   | "info"
   | "loading";
 
+export type InfoPets = {
+  id: number;
+  pet_info: FormAnimalValues;
+  user_info: User;
+};
+
 export type User = {
   id: number;
   name: string;
@@ -85,10 +116,4 @@ export type User = {
   avatar: string;
   email: string;
   description: string;
-};
-
-export type InfoPets = {
-  id: number;
-  pet_info: FormValues;
-  user_info: User;
 };
