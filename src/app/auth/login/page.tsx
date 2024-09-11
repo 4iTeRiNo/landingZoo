@@ -8,7 +8,7 @@ import React, { useEffect, useState, useTransition } from "react";
 import { useFormState, useFormStatus } from "react-dom";
 import { useForm } from "react-hook-form";
 import CustomButton from "@/components/CustomButton";
-import ButtonTelegramAuth from "@/components/telegram";
+import TelegramAuthWidget from "@/components/telegramAuth";
 
 function FormComponentAuth() {
   const {
@@ -78,7 +78,7 @@ function FormComponentAuth() {
       >
         Зарегистрирваться
       </Link>
-      <ButtonTelegramAuth />
+      <TelegramAuthWidget />
     </form>
   );
 }

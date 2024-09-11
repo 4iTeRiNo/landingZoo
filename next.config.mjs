@@ -1,9 +1,11 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   env: {
-    BASE_URL: process.env.BASE_URL,
     API_URL: process.env.API_URL,
+    BASE_URL: process.env.BASE_URL,
     SESSION_SECRET: process.env.SESSION_SECRET,
+    BOT_TOKEN: process.env.BOT_TOKEN,
+    BOT_USERNAME: process.env.BOT_USERNAME,
   },
   webpack(config) {
     // Grab the existing rule that handles SVG imports
