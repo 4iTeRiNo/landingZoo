@@ -127,3 +127,19 @@ export type TelegramUser = {
   auth_date: number;
   hash: string;
 };
+
+export type SingOfSale = "all" | "sale" | "notSale";
+
+export type PetList = {
+  id: string;
+  name: string;
+  breed: string;
+  age: string;
+  gender: string;
+  weight: string;
+  features: string;
+  file: string[];
+  sign_of_sale: SingOfSale;
+};
+
+export type DataPets = PetList[];

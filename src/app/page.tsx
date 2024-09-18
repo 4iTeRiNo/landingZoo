@@ -8,6 +8,7 @@ import Header from "@/components/Header";
 import Video from "@/components/Video/Video";
 import { detailsSteps, mockContacts } from "@/shared/mock";
 import { LineStepIcon } from "@/shared/svg";
+import TelegramAuthWidget from "@/components/telegramAuth";
 
 export default function Home() {
   return (
@@ -109,6 +110,8 @@ export default function Home() {
           ))}
         </section>
       </main>
+      <TelegramAuthWidget />
+
       <Footer />
     </>
   );

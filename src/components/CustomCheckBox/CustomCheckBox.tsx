@@ -15,7 +15,7 @@ export interface CheckboxProps extends BaseCheckboxProps {}
 
 const checkbox = tv({
   slots: {
-    base: "border-none w-full rounded-lg px-0 justify-items-stretch  bg-greyText hover:bg-greyText opacity-50",
+    base: "border-none w-full rounded-lg px-0 justify-items-stretch   hover:bg-greyText opacity-50",
     content: "text-white",
   },
   variants: {

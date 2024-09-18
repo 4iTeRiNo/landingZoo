@@ -17,7 +17,7 @@ import { Controller, useForm } from "react-hook-form";
 import CustomButton from "../CustomButton";
 import Loader from "../Loader";
 import Title from "../TitleAccent";
-import Weekdays from "./Weekday";
+import Weekdays from "../CustomCheckBox";
 
 function FormComponentNewForm() {
   const {

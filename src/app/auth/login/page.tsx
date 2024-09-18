@@ -7,8 +7,8 @@ import Link from "next/link";
 import React, { useEffect, useState, useTransition } from "react";
 import { useFormState, useFormStatus } from "react-dom";
 import { useForm } from "react-hook-form";
-import CustomButton from "@/components/CustomButton";
 import TelegramAuthWidget from "@/components/telegramAuth";
+import CustomButton from "@/components/CustomButton";
 
 function FormComponentAuth() {
   const {
@@ -72,13 +72,14 @@ function FormComponentAuth() {
         text={pending ? "Секундочку" : "Войти"}
         isLoading={pending}
       />
+      <span className="text-center text-white"> или </span>
+      <TelegramAuthWidget />
       <Link
         href="/auth/signup"
         className="text-base text-greyText text-center hover:text-white"
       >
         Зарегистрирваться
       </Link>
-      <TelegramAuthWidget />
     </form>
   );
 }

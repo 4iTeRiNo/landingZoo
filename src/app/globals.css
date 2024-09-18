@@ -24,6 +24,24 @@ body {
     rgba(0, 0, 0, 0.06) 0px 1px 2px 0px;
   caret-color: white;
   font-family: var(--second-family);
+  scroll-timeline: --page-scroll block;
+}
+
+@keyframes grow-progress {
+  0%,
+  85% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+  }
+}
+
+.sideBar {
+  animation: grow-progress auto linear;
+  animation-timeline: scroll();
+  animation-range: cover 0% cover 100%;
 }
 
 /* переопределение цвета пагинации */

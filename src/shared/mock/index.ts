@@ -15,7 +15,7 @@ import {
   SettingIcon,
   PaintIcon,
 } from "@/shared/svg";
-import { Comments, Contacts, Faqs, InfoPets, Day } from "../types";
+import { Comments, Contacts, Faqs, InfoPets, Day, DataPets } from "../types";
 
 export const InfoPet: InfoPets[] = [
   {
@@ -172,4 +172,97 @@ export const detailsSteps = [
   { id: 2, text: "Зарегистрироваться", href: "#", icon: RegistrationIcon },
   { id: 3, text: "Добавить животное", href: "#", icon: PuppyIcon },
   { id: 4, text: "Добавить время работы", href: "#", icon: CLockIcon },
+];
+
+export const DataPetsData: DataPets = [
+  {
+    id: "1",
+    name: "Шарик",
+    breed: "Пудель",
+    age: "2 месяца",
+    gender: "Женский",
+    weight: "15 кг",
+    features:
+      "Макс - дружелюбный и активный лабрадор, который любит бегать и играть с детьми.",
+    file: ["/petsImage/image_1.png"],
+    sign_of_sale: "sale",
+  },
+  {
+    id: "2",
+    name: "Шарик",
+    breed: "Пудель",
+    age: "2 месяца",
+    gender: "Женский",
+    weight: "15 кг",
+    features:
+      "Рекс - преданный и умный пес, идеально подходит для охраны дома и дрессировки.",
+    file: ["/petsImage/image_2.png"],
+    sign_of_sale: "notSale",
+  },
+  {
+    id: "3",
+    name: "Шарик",
+    breed: "Пудель",
+    age: "2 месяца",
+    gender: "Женский",
+    weight: "15 кг",
+    features: "Спереди, Сзади, Сбоку",
+    file: ["/petsImage/image_3.png"],
+    sign_of_sale: "sale",
+  },
+  {
+    id: "4",
+    name: "Шарик",
+    breed: "Пудель",
+    age: "2 месяца",
+    gender: "Женский",
+    weight: "15 кг",
+    features: "Спереди, Сзади, Сбоку",
+    file: ["/petsImage/image_4.png"],
+    sign_of_sale: "notSale",
+  },
+  {
+    id: "5",
+    name: "Шарик",
+    breed: "Пудель",
+    age: "2 месяца",
+    gender: "Женский",
+    weight: "15 кг",
+    features: "Спереди, Сзади, Сбоку",
+    file: ["/petsImage/image_1.png"],
+    sign_of_sale: "sale",
+  },
+  {
+    id: "6",
+    name: "Шарик",
+    breed: "Пудель",
+    age: "2 месяца",
+    gender: "Женский",
+    weight: "15 кг",
+    features: "Спереди, Сзади, Сбоку",
+    file: ["/petsImage/image_2.png"],
+    sign_of_sale: "sale",
+  },
+  {
+    id: "7",
+    name: "Шарик",
+    breed: "Пудель",
+    age: "2 месяца",
+    gender: "Женский",
+    weight: "15 кг",
+    features: "Спереди, Сзади, Сбоку",
+    file: ["/petsImage/image_3.png"],
+    sign_of_sale: "notSale",
+  },
+  {
+    id: "8",
+    name: "Шарик",
+    breed: "Пудель",
+    age: "2 месяца",
+    gender: "Женский",
+    weight: "15 кг",
+    features: "Спереди, Сзади, Сбоку",
+    file: ["/petsImage/image_4.png"],
+    sign_of_sale: "sale",
+  },
 ];

@@ -24,3 +24,6 @@ export { default as ClockCircleIcon } from "@/assets/svg/clock-circle.svg";
 export { default as WarningIcon } from "@/assets/svg/warning-icon.svg";
 export { default as AccountCircleIcon } from "@/assets/svg/account_circle.svg";
 export { default as VisibilityIcon } from "@/assets/svg/visibility_off.svg";
+export { default as AddPlusIcon } from "@/assets/svg/add-plus-icon.svg";
+export { default as DeleteIcon } from "@/assets/svg/delete-icon.svg";
+export { default as FilterIcon } from "@/assets/svg/filter-icon.svg";

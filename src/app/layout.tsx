@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
+import { CounterStoreProvider } from "@/components/providers";
 import { inter, openSans, roboto } from "./fonts";
 
 export const metadata: Metadata = {
@@ -18,7 +19,7 @@ export default function RootLayout({
         className={`${inter.variable} ${openSans.variable} 
       ${roboto.variable}`}
       >
-        {children}
+        <CounterStoreProvider>{children}</CounterStoreProvider>
       </body>
     </html>
   );
